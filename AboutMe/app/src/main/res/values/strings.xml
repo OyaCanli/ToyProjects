@@ -3,4 +3,6 @@
     <string name="name">Oya Canli</string>
     <string name="save">Save</string>
     <string name="next">Next</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_your_nick">Enter your nickname</string>
 </resources>
