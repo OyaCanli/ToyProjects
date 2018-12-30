@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         // Make sure the correct dessert is showing
         binding.dessertButton.setImageResource(currentDessert.imageId)
 
-        dessertTimer = DessertTimer()
+        dessertTimer = DessertTimer(this.lifecycle)
     }
 
     /**
@@ -151,34 +151,5 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
             R.id.shareMenuButton -> onShare()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    /** Lifecycle Methods **/
-
-    override fun onStart() {
-        super.onStart()
-        Timber.d( "onStart Called")
-        dessertTimer.startTimer()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Timber.d( "onResume Called")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Timber.d( "onPause Called")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        dessertTimer.stopTimer()
-        Timber.d( "onStop Called")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.d( "onDestroy Called")
     }
 }
