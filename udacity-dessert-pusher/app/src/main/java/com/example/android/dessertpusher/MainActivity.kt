@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     )
     private var currentDessert = allDesserts[0]
 
+    private lateinit var dessertTimer : DessertTimer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Timber.d( "onCreate Called")
@@ -80,6 +82,8 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
         // Make sure the correct dessert is showing
         binding.dessertButton.setImageResource(currentDessert.imageId)
+
+        dessertTimer = DessertTimer()
     }
 
     /**
@@ -154,6 +158,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     override fun onStart() {
         super.onStart()
         Timber.d( "onStart Called")
+        dessertTimer.startTimer()
     }
 
     override fun onResume() {
@@ -168,6 +173,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     override fun onStop() {
         super.onStop()
+        dessertTimer.stopTimer()
         Timber.d( "onStop Called")
     }
 
