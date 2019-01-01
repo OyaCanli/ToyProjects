@@ -1,6 +1,7 @@
 package com.canli.oya.aboutme
 
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,18 +13,13 @@ import android.view.inputmethod.InputMethodManager
 import com.canli.oya.aboutme.databinding.EnterInfoBinding
 
 /**
- * A simple [Fragment] subclass.
+ * The fragment which collects input from the user
  *
  */
 class EnterInfoFragment : Fragment() {
 
     private lateinit var binding: EnterInfoBinding
-
-    var name: String? = null
-    var nick: String? = null
-    var bio: String? = null
-    var mail: String? = null
-    //var imageUrl: String? = null
+    private lateinit var mViewModel: MainViewModel
 
     private val hints = listOf(
         R.string.enter_your_name,
@@ -32,8 +28,6 @@ class EnterInfoFragment : Fragment() {
         R.string.tell_us_more
     )
 
-    private var stepNumber: Int = 0
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,14 +35,19 @@ class EnterInfoFragment : Fragment() {
         binding = EnterInfoBinding.inflate(inflater, container, false)
 
         binding.doneBtn.setOnClickListener {
-            if (stepNumber <= 3) {
-                setNext()
-            }
+            setNext()
         }
         return binding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        mViewModel = ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
+    }
+
     private fun setNext() {
+
+        var stepNo = mViewModel.stepNumber
 
         //For hiding soft keyboard
         val inputManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -56,18 +55,22 @@ class EnterInfoFragment : Fragment() {
 
         //Save user input
         val input: String? = binding.userInputEt.text.toString().trim()
-        when (stepNumber) {
-            0 -> name = input
-            1 -> nick = input
+        when (stepNo) {
+            0 -> mViewModel.name = input
+            1 -> mViewModel.nick = input
             2 -> {
-                mail = input
+                mViewModel.mail = input
                 binding.doneBtn.text = getText(R.string.save)
             }
             //Todo: implement image pick here
             3 -> {
-                bio = input
-                Log.d(TAG, "$name $nick $mail $bio")
-                //TODO: Open next fragment
+                mViewModel.bio = input
+                //That was the last step. Open ShowProfileFragment and don't execute the rest of the method
+                fragmentManager!!.beginTransaction()
+                    .replace(R.id.main_container, ShowProfileFragment())
+                    .addToBackStack(null)
+                    .commit()
+                Log.d(TAG, "fraqment transaction is called")
                 return
             }
         }
@@ -76,11 +79,11 @@ class EnterInfoFragment : Fragment() {
         binding.userInputEt.text = null
 
         //Update the information for next step (except last step)
-        if (stepNumber < 3) {
-            binding.stepInfoTv.text = getText(hints[stepNumber + 1])
+        if (stepNo < 3) {
+            binding.stepInfoTv.text = getText(hints[stepNo + 1])
         }
 
-        stepNumber++
+        mViewModel.stepNumber++
 
     }
 
