@@ -9,8 +9,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import com.canli.oya.aboutme.databinding.EnterInfoBinding
+
 
 /**
  * The fragment which collects input from the user
@@ -33,7 +36,6 @@ class EnterInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = EnterInfoBinding.inflate(inflater, container, false)
-
         binding.doneBtn.setOnClickListener {
             setNext()
         }
@@ -47,7 +49,7 @@ class EnterInfoFragment : Fragment() {
 
     private fun setNext() {
 
-        var stepNo = mViewModel.stepNumber
+        val stepNo = mViewModel.stepNumber
 
         //For hiding soft keyboard
         val inputManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -75,12 +77,25 @@ class EnterInfoFragment : Fragment() {
             }
         }
 
-        //Clean edit text
-        binding.userInputEt.text = null
-
         //Update the information for next step (except last step)
         if (stepNo < 3) {
-            binding.stepInfoTv.text = getText(hints[stepNo + 1])
+            val animationOut = AnimationUtils.loadAnimation(activity, R.anim.slide_out_left)
+            animationOut.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation) {}
+                override fun onAnimationRepeat(animation: Animation) {}
+
+                override fun onAnimationEnd(animation: Animation) {
+                    val animationIn = AnimationUtils.loadAnimation(activity, R.anim.slide_in_right)
+                    //When exit animation ends, start enter animation
+                    binding.stepInfoTv.startAnimation(animationIn)
+                    binding.userInputEt.startAnimation(animationIn)
+                    //Clean edit text and update info text
+                    binding.userInputEt.text = null
+                    binding.stepInfoTv.text = getText(hints[stepNo + 1])
+                }
+            })
+            binding.stepInfoTv.startAnimation(animationOut)
+            binding.userInputEt.startAnimation(animationOut)
         }
 
         mViewModel.stepNumber++
