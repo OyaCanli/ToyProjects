@@ -47,7 +47,6 @@ class EnterInfoFragment : Fragment() {
     }
 
     private fun setNext() {
-
         val stepNo = mViewModel.stepNumber
 
         //For hiding soft keyboard
@@ -77,33 +76,40 @@ class EnterInfoFragment : Fragment() {
             }
         }
 
-
         //Update the information for next step (except last step)
         if (stepNo < 3) {
             val animationOut = AnimationUtils.loadAnimation(activity, R.anim.slide_out_left)
-            animationOut.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationStart(animation: Animation) {}
-                override fun onAnimationRepeat(animation: Animation) {}
-
+            animationOut.setAnimationListener(object : myAnimListener {
                 override fun onAnimationEnd(animation: Animation) {
                     val animationIn = AnimationUtils.loadAnimation(activity, R.anim.slide_in_right)
                     with(binding) {
-                        //When exit animation ends, start enter animation
-                        stepInfoTv.startAnimation(animationIn)
-                        userInputEt.startAnimation(animationIn)
                         //Clean edit text and update info text
                         userInputEt.text = null
                         stepInfoTv.text = getText(hints[stepNo + 1])
+                        //When exit animation ends, start enter animation
+                        startAnimOnViews(animationIn, stepInfoTv, userInputEt)
                     }
                 }
             })
-            binding.stepInfoTv.startAnimation(animationOut)
-            binding.userInputEt.startAnimation(animationOut)
+            startAnimOnViews(animationOut, binding.stepInfoTv, binding.userInputEt)
         }
 
+        //Increment step number in the view model and on the step indicator
         mViewModel.stepNumber++
         binding.stepIndicator.currentStepPosition = stepNo + 1
 
+    }
+
+    interface myAnimListener : Animation.AnimationListener {
+        override fun onAnimationStart(animation: Animation) {}
+        override fun onAnimationRepeat(animation: Animation) {}
+        override fun onAnimationEnd(animation: Animation) {}
+    }
+
+    fun startAnimOnViews(anim: Animation, vararg views: View) {
+        for (v in views) {
+            v.startAnimation(anim)
+        }
     }
 
     companion object {
