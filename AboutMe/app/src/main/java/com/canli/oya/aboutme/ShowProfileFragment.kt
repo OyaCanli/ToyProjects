@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,6 @@ class ShowProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_show_profile, container, false)
-        Log.d(TAG, "onCreateView of fragment is called")
         return binding.root
     }
 
@@ -33,7 +31,6 @@ class ShowProfileFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
         binding.viewmodel = mViewModel
-        Log.d(TAG, "onActivityCreated of fragment is called")
     }
 
     companion object {

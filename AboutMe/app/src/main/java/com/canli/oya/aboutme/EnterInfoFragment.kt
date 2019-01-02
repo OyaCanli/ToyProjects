@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,25 +56,27 @@ class EnterInfoFragment : Fragment() {
 
         //Save user input
         val input: String? = binding.userInputEt.text.toString().trim()
-        when (stepNo) {
-            0 -> mViewModel.name = input
-            1 -> mViewModel.nick = input
-            2 -> {
-                mViewModel.mail = input
-                binding.doneBtn.text = getText(R.string.save)
-            }
-            //Todo: implement image pick here
-            3 -> {
-                mViewModel.bio = input
-                //That was the last step. Open ShowProfileFragment and don't execute the rest of the method
-                fragmentManager!!.beginTransaction()
-                    .replace(R.id.main_container, ShowProfileFragment())
-                    .addToBackStack(null)
-                    .commit()
-                Log.d(TAG, "fraqment transaction is called")
-                return
+        with(mViewModel) {
+            when (stepNo) {
+                0 -> name = input
+                1 -> nick = input
+                2 -> {
+                    mail = input
+                    binding.doneBtn.text = getText(R.string.save)
+                }
+                //Todo: implement image pick here
+                3 -> {
+                    bio = input
+                    //That was the last step. Open ShowProfileFragment and don't execute the rest of the method
+                    fragmentManager!!.beginTransaction()
+                        .replace(R.id.main_container, ShowProfileFragment())
+                        .addToBackStack(null)
+                        .commit()
+                    return
+                }
             }
         }
+
 
         //Update the information for next step (except last step)
         if (stepNo < 3) {
@@ -86,12 +87,14 @@ class EnterInfoFragment : Fragment() {
 
                 override fun onAnimationEnd(animation: Animation) {
                     val animationIn = AnimationUtils.loadAnimation(activity, R.anim.slide_in_right)
-                    //When exit animation ends, start enter animation
-                    binding.stepInfoTv.startAnimation(animationIn)
-                    binding.userInputEt.startAnimation(animationIn)
-                    //Clean edit text and update info text
-                    binding.userInputEt.text = null
-                    binding.stepInfoTv.text = getText(hints[stepNo + 1])
+                    with(binding) {
+                        //When exit animation ends, start enter animation
+                        stepInfoTv.startAnimation(animationIn)
+                        userInputEt.startAnimation(animationIn)
+                        //Clean edit text and update info text
+                        userInputEt.text = null
+                        stepInfoTv.text = getText(hints[stepNo + 1])
+                    }
                 }
             })
             binding.stepInfoTv.startAnimation(animationOut)
