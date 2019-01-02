@@ -84,6 +84,7 @@ class EnterInfoFragment : Fragment() {
         }
 
         mViewModel.stepNumber++
+        binding.stepIndicator.currentStepPosition = stepNo + 1
 
     }
 
