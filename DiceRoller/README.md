@@ -1,0 +1,2 @@
+This is the toy app of the first lesson of the Developing Android Apps with Kotlin. My first app in Kotlin as well.
+It's just a simple app for rolling a dice. But I added a few animations to create a dice rolling effect. I also tried some kotlin features like local functions

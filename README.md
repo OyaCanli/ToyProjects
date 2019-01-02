@@ -1,0 +1,1 @@
+This repo is a collection of small toy apps that I'll be making for practicing Kotlin. Either toy apps of the courses or codelabs I follow, with my modifications and additions, or my own mini experimentations..
