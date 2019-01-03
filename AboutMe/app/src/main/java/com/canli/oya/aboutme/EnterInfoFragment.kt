@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +28,8 @@ class EnterInfoFragment : Fragment() {
         R.string.enter_your_name,
         R.string.enter_your_nick,
         R.string.enter_your_email,
-        R.string.tell_us_more
+        R.string.tell_us_more,
+        R.string.upload_an_image
     )
 
     override fun onCreateView(
@@ -59,13 +61,9 @@ class EnterInfoFragment : Fragment() {
             when (stepNo) {
                 0 -> name = input
                 1 -> nick = input
-                2 -> {
-                    mail = input
-                    binding.doneBtn.text = getText(R.string.save)
-                }
-                //Todo: implement image pick here
-                3 -> {
-                    bio = input
+                2 -> mail = input
+                3 -> bio = input
+                4 -> {
                     //That was the last step. Open ShowProfileFragment and don't execute the rest of the method
                     fragmentManager!!.beginTransaction()
                         .replace(R.id.main_container, ShowProfileFragment())
@@ -77,7 +75,7 @@ class EnterInfoFragment : Fragment() {
         }
 
         //Update the information for next step (except last step)
-        if (stepNo < 3) {
+        if (stepNo < 4) {
             val animationOut = AnimationUtils.loadAnimation(activity, R.anim.slide_out_left)
             animationOut.setAnimationListener(object : myAnimListener {
                 override fun onAnimationEnd(animation: Animation) {
@@ -87,7 +85,18 @@ class EnterInfoFragment : Fragment() {
                         userInputEt.text = null
                         stepInfoTv.text = getText(hints[stepNo + 1])
                         //When exit animation ends, start enter animation
-                        startAnimOnViews(animationIn, stepInfoTv, userInputEt)
+                        if (stepNo == 3) {
+                            userInputEt.visibility = View.GONE
+                            pickImage.visibility = View.VISIBLE
+                            startAnimOnViews(animationIn, stepInfoTv, pickImage)
+                            pickImage.setOnClickListener {
+                                Log.d(TAG, "image clicked")
+                                //TODO: implement image pick here
+                            }
+                            doneBtn.text = getText(R.string.save)
+                        } else { //IF step number is 4
+                            startAnimOnViews(animationIn, stepInfoTv, userInputEt)
+                        }
                     }
                 }
             })
