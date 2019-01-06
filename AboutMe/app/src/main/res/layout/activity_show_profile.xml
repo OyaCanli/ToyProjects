@@ -14,7 +14,7 @@
             android:layout_height="match_parent">
 
         <TextView
-                android:text="@{viewmodel.name}"
+                android:text="@{viewmodel.userInfo[viewmodel.name]}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/name_tv"
@@ -37,10 +37,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
                 tools:text="OyaCan"
-                android:text="@{viewmodel.nick}" app:layout_constraintEnd_toStartOf="@+id/profile_image"
+                android:text="@{viewmodel.userInfo[viewmodel.nick]}"
+                app:layout_constraintEnd_toStartOf="@+id/profile_image"
                 android:layout_marginEnd="8dp" android:gravity="center_horizontal"/>
         <TextView
-                android:text="@{viewmodel.mail}"
+                android:text="@{viewmodel.userInfo[viewmodel.mail]}"
                 android:layout_width="0dp"
                 tools:text="oyacan@gmail.com"
                 android:layout_height="wrap_content"
@@ -69,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/details_tv"
-                    android:text="@{viewmodel.bio}"
+                    android:text="@{viewmodel.userInfo[viewmodel.bio]}"
                     tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
                     android:layout_margin="@dimen/margin_stardard"
                     android:lineSpacingMultiplier="1.2"/>

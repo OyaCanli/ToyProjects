@@ -6,6 +6,9 @@
     <data class="EditTextLayoutBinding">
         <variable name="stepInfo"
                   type="String"/>
+
+        <variable name="userInput"
+                  type="String"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -32,20 +35,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="@dimen/margin_stardard"
+                android:text="@{userInput}"
                 app:layout_constraintHorizontal_bias="0.187"
                 app:layout_constraintTop_toBottomOf="@+id/step_info_tv"/>
 
-        <Button
-                android:text="@string/next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/next_btn"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_margin="@dimen/margin_stardard"
-                app:layout_constraintEnd_toEndOf="parent"
-                style="@style/Base.Widget.AppCompat.Button.Colored"
-                android:fontFamily="@font/roboto"
-                app:layout_constraintTop_toBottomOf="@id/user_input_et"/>
 
     </android.support.constraint.ConstraintLayout>
 

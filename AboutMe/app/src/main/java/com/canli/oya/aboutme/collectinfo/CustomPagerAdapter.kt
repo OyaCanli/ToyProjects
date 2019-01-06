@@ -1,15 +1,16 @@
 package com.canli.oya.aboutme.collectinfo
 
+import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import com.stepstone.stepper.Step
+import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter
 
 const val KEY_STEP_NUMBER = "stepNumber"
 
-class CustomPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class CustomPagerAdapter(fm: FragmentManager, context: Context) : AbstractFragmentStepAdapter(fm, context) {
 
-    override fun getItem(position: Int): Fragment {
+    override fun createStep(position: Int): Step {
         return when (position) {
             in 0..3 -> {
                 val fragment = EditTextFragment()
