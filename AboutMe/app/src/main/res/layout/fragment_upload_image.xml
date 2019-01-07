@@ -3,7 +3,9 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class="ImageLayoutBinding"/>
+    <data class="ImageLayoutBinding">
+        <variable name="imageUrl" type="String"/>
+    </data>
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,25 +25,13 @@
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_gallery"
+                android:src="@{imageUrl}"
                 android:id="@+id/pick_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="@dimen/margin_stardard"
-                app:layout_constraintTop_toBottomOf="@+id/step_info_tv"/>
-
-        <Button
-                android:text="@string/next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/done_btn"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_margin="@dimen/margin_stardard"
-                app:layout_constraintEnd_toEndOf="parent"
-                style="@style/Base.Widget.AppCompat.Button.Colored"
-                android:fontFamily="@font/roboto"
-                app:layout_constraintTop_toBottomOf="@id/pick_image"
-                android:layout_marginTop="32dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/step_info_tv"
+                android:contentDescription="@string/cd_image_pick"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

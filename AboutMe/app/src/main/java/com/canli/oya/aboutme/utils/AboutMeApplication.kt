@@ -1,4 +1,4 @@
-package com.canli.oya.aboutme
+package com.canli.oya.aboutme.utils
 
 import android.app.Application
 import timber.log.Timber
