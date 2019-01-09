@@ -52,7 +52,7 @@
             android:hint="@string/shr_hint_password"
             app:errorEnabled="true"
             app:passwordToggleEnabled = "true"
-            app:helperText = "help"
+            app:helperText = "@string/password_helper_text"
             app:counterEnabled = "true"
             app:counterMaxLength = "10">
 
