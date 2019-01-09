@@ -5,6 +5,7 @@ import android.databinding.BindingAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 import com.canli.oya.aboutme.R
 import java.io.File
 import java.io.IOException

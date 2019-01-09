@@ -6,7 +6,7 @@ const val totalStepCount: Int = 5
 
 class CollectInfoViewModel : ViewModel() {
 
-    var userInfo = arrayOfNulls<String>(totalStepCount)
+    var userInfo: Array<String?> = arrayOfNulls(totalStepCount)
 
     val name: Int = 0
     val nick: Int = 1

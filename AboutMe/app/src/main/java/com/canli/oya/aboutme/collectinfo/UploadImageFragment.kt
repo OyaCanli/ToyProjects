@@ -20,6 +20,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.canli.oya.aboutme.R
 import com.canli.oya.aboutme.databinding.ImageLayoutBinding
+import com.canli.oya.aboutme.showinfo.ShowProfileActivity
 import com.canli.oya.aboutme.utils.createImageFile
 import com.canli.oya.aboutme.utils.deleteImageFile
 import com.stepstone.stepper.BlockingStep
@@ -38,6 +39,7 @@ const val REQUEST_IMAGE_CAPTURE = 1
 const val REQUEST_STORAGE_PERMISSION = 2
 const val PICK_IMAGE_REQUEST = 3
 const val FILE_PROVIDER_AUTHORITY = "com.canli.oya.aboutme.fileprovider"
+const val KEY_USER_INFO_LIST: String = "userInfoList"
 
 class UploadImageFragment : Fragment(), BlockingStep {
 
@@ -71,7 +73,10 @@ class UploadImageFragment : Fragment(), BlockingStep {
 
     fun saveAndShowAll() {
         saveImageUrl(mImageUri)
-        //TODO: open other activity
+
+        val showAll = Intent(requireActivity(), ShowProfileActivity::class.java)
+        showAll.putExtra(KEY_USER_INFO_LIST, mViewModel.userInfo)
+        startActivity(showAll)
     }
 
     /////////////// OBLIGATORY CALLBACK OF STEPPER LAYOUT
