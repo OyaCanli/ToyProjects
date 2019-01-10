@@ -21,24 +21,22 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.android.databinding.basicsample.R
-import com.example.android.databinding.basicsample.data.SimpleViewModelSolution
-import com.example.android.databinding.basicsample.databinding.PlainActivitySolution5Binding
+import com.example.android.databinding.basicsample.data.SimpleViewModel
+import com.example.android.databinding.basicsample.databinding.MainActivityBinding
 
-/**
- * Fifth version of the Activity in the codelab.
- */
-class PlainOldActivitySolution5 : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity() {
 
     // Obtain ViewModel from ViewModelProviders
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(SimpleViewModelSolution::class.java)
+        ViewModelProviders.of(this).get(SimpleViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: PlainActivitySolution5Binding =
-            DataBindingUtil.setContentView(this, R.layout.plain_activity_solution_5)
+        val binding: MainActivityBinding =
+                DataBindingUtil.setContentView(this, R.layout.main_activity)
 
         binding.viewmodel = viewModel
     }
