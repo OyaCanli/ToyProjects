@@ -17,10 +17,10 @@ class WordViewModel(application: Application) : AndroidViewModel(application) {
     private val scope = CoroutineScope(coroutineContext)
 
     private val repository: WordRepository
-    private val allWords: LiveData<List<Word>>
+    val allWords: LiveData<List<Word>>
 
     init {
-        val wordsDao = WordRoomDatabase.getDatabase(application).wordDao()
+        val wordsDao = WordRoomDatabase.getDatabase(application, scope).wordDao()
         repository = WordRepository(wordsDao)
         allWords = repository.allWords
     }
