@@ -1,28 +1,24 @@
 package com.canli.oya.diceroller
 
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.ImageView
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var dice_iv: ImageView
-    private val TAG = "MAinActivity"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val roll_btn: Button = findViewById(R.id.roll_btn)
-        roll_btn.text = getString(R.string.roll_btn)
+
         roll_btn.setOnClickListener {
             rollAndAnimateDice()
         }
-        dice_iv = findViewById(R.id.dice_image)
     }
 
     private fun rollAndAnimateDice() {
@@ -43,27 +39,27 @@ class MainActivity : AppCompatActivity() {
                 else -> R.drawable.dice_6
             }
             Log.d(TAG, "picked number: ${diceRange[count]}")
-            dice_iv.setImageResource(resourceId)
+            dice_image.setImageResource(resourceId)
         }
 
-        /*Create a local function for animating roll dice:
-        Roll the dice three times with small pauses, then stop rolling and begin blinking animation*/
-        fun animateDice(initialCount : Int){
-            //wait between each roll
-            Handler().postDelayed({
-                if(initialCount < 2){
-                    rollDice(initialCount + 1)
-                    animateDice(initialCount + 1)
-                } else {
-                    //When count reaches 2, stop rolling a start blinking animation
-                    val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blinking_anim)
-                    dice_iv.startAnimation(animation)
-                }
-            }, 300)
+        //A local function to make three rolls with time gaps, to create a rolling feeling
+        suspend fun animateDice() {
+            for (i in 0..2) {
+                rollDice(i)
+                delay(DELAY_TIME)
+            }
         }
 
-        //Make a initial roll and then begin rolling with time gaps
-        rollDice(0)
-        animateDice(0)
+        GlobalScope.launch {
+            animateDice()
+            //In the end, show a blinking animation to signify that rolling ended
+            val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blinking_anim)
+            dice_image.startAnimation(animation)
+        }
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
+        private const val DELAY_TIME  = 200L
     }
 }
