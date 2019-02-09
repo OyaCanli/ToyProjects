@@ -1,4 +1,4 @@
-package com.enpassio.roomwithaviewcodelab
+package com.oyacanli.roomwithaviewcodelab
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -20,7 +20,7 @@ class WordViewModel(application: Application) : AndroidViewModel(application) {
     val allWords: LiveData<List<Word>>
 
     init {
-        val wordsDao = WordRoomDatabase.getDatabase(application, scope).wordDao()
+        val wordsDao = WordRoomDatabase.getDatabase(application).wordDao()
         repository = WordRepository(wordsDao)
         allWords = repository.allWords
     }

@@ -1,15 +1,14 @@
-package com.enpassio.roomwithaviewcodelab
+package com.oyacanli.roomwithaviewcodelab
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.longToast
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,10 +20,9 @@ class MainActivity : AppCompatActivity() {
 
         wordViewModel = ViewModelProviders.of(this).get(WordViewModel::class.java)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = WordListAdapter(this)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerview.adapter = adapter
+        recyclerview.layoutManager = LinearLayoutManager(this)
 
         fab.setOnClickListener {
             val intent = Intent(this@MainActivity, NewWordActivity::class.java)
@@ -46,14 +44,11 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
             data?.let {
-                val word = Word(it.getStringExtra(NewWordActivity.EXTRA_REPLY))
+                val word = Word(it.getStringExtra(KEY_NEW_WORD))
                 wordViewModel.insert(word)
             }
         } else {
-            Toast.makeText(
-                applicationContext,
-                R.string.empty_not_saved,
-                Toast.LENGTH_LONG).show()
+            longToast(R.string.empty_not_saved)
         }
     }
 }

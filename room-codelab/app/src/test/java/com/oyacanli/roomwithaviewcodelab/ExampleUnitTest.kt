@@ -1,4 +1,4 @@
-package com.enpassio.roomwithaviewcodelab
+package com.oyacanli.roomwithaviewcodelab
 
 import org.junit.Test
 
