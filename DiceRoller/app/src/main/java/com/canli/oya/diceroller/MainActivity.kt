@@ -1,16 +1,19 @@
 package com.canli.oya.diceroller
 
+import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.view.animation.AnimationUtils
+import android.view.inputmethod.InputMethodManager
+import android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    var sum : Int = 7
+    var mediaPlayer : MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,18 +22,37 @@ class MainActivity : AppCompatActivity() {
         roll_btn.setOnClickListener {
             rollAndAnimateDice()
         }
+
+        ok_btn.setOnClickListener {
+            verifySum()
+        }
+    }
+
+    private fun verifySum() {
+        val answer = sum_et.text.toString().toInt()
+        sum_et.text = null
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(this.currentFocus!!.windowToken, HIDE_NOT_ALWAYS)
+         if(sum == answer){
+             result_tv.text = getText(R.string.correct_answer)
+             result_icon.setImageResource(R.drawable.ic_check)
+             mediaPlayer?.release()
+             mediaPlayer = MediaPlayer.create(this, R.raw.bravo)
+             mediaPlayer?.start()
+         } else {
+             result_tv.text = getText(R.string.wrong_answer)
+             result_icon.setImageResource(R.drawable.ic_wrong)
+             mediaPlayer?.release()
+             mediaPlayer = MediaPlayer.create(this, R.raw.essaye_encore)
+             mediaPlayer?.start()
+         }
     }
 
     private fun rollAndAnimateDice() {
-
-        val diceRange = mutableListOf(1,2,3,4,5,6)
-        diceRange.shuffle()
-        Log.d(TAG, "diceRange: $diceRange")
-
-        /*Create a local function for rolling the dice:
+       /* Create a local function for rolling the dice:
         Pick a random int and set the corresponding dice image*/
-        fun rollDice(count : Int) {
-            val resourceId: Int = when (diceRange[count]) {
+        fun getDrawableForTheDie(count : Int) : Int {
+            return when (count) {
                 1 -> R.drawable.dice_1
                 2 -> R.drawable.dice_2
                 3 -> R.drawable.dice_3
@@ -38,11 +60,18 @@ class MainActivity : AppCompatActivity() {
                 5 -> R.drawable.dice_5
                 else -> R.drawable.dice_6
             }
-            Log.d(TAG, "picked number: ${diceRange[count]}")
-            dice_image.setImageResource(resourceId)
         }
 
-        //A local function to make three rolls with time gaps, to create a rolling feeling
+        val rand = Random()
+        val firstDie = rand.nextInt(6) + 1
+        val secondDie = rand.nextInt(6) + 1
+        first_number.text = firstDie.toString()
+        second_number.text = secondDie.toString()
+        first_dice.setImageResource(getDrawableForTheDie(firstDie))
+        second_dice.setImageResource(getDrawableForTheDie(secondDie))
+        sum = firstDie + secondDie
+
+        /*A local function to make three rolls with time gaps, to create a rolling feeling
         suspend fun animateDice() {
             for (i in 0..2) {
                 rollDice(i)
@@ -54,12 +83,17 @@ class MainActivity : AppCompatActivity() {
             animateDice()
             //In the end, show a blinking animation to signify that rolling ended
             val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blinking_anim)
-            dice_image.startAnimation(animation)
-        }
+            first_dice.startAnimation(animation)
+        }*/
     }
 
     companion object {
         private const val TAG = "MainActivity"
         private const val DELAY_TIME  = 200L
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer?.release()
     }
 }
