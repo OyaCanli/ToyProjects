@@ -2,4 +2,6 @@
     <string name="app_name">Dice Roller</string>
     <string name="correct_answer">Bravo!</string>
     <string name="wrong_answer">Essaye encore!</string>
+    <string name="roll">Zar At</string>
+    <string name="ok">OK</string>
 </resources>

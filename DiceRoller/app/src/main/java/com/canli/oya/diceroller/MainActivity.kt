@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
 import android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -29,10 +30,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun verifySum() {
-        val answer = sum_et.text.toString().toInt()
+        val answer : Int?
+        try {
+           answer = sum_et.text.toString().toInt()
+        } catch (e : NumberFormatException){
+            println(e)
+            Toast.makeText(this, "Bir sayi girmediniz", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         sum_et.text = null
-        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputManager.hideSoftInputFromWindow(this.currentFocus!!.windowToken, HIDE_NOT_ALWAYS)
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        inputManager?.hideSoftInputFromWindow(this.currentFocus!!.windowToken, HIDE_NOT_ALWAYS)
          if(sum == answer){
              result_tv.text = getText(R.string.correct_answer)
              result_icon.setImageResource(R.drawable.ic_check)
@@ -70,6 +79,8 @@ class MainActivity : AppCompatActivity() {
         first_dice.setImageResource(getDrawableForTheDie(firstDie))
         second_dice.setImageResource(getDrawableForTheDie(secondDie))
         sum = firstDie + secondDie
+        result_tv.text = null
+        result_icon.setImageResource(0)
 
         /*A local function to make three rolls with time gaps, to create a rolling feeling
         suspend fun animateDice() {
