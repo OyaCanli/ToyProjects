@@ -8,7 +8,6 @@ import android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -71,9 +70,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val rand = Random()
-        val firstDie = rand.nextInt(6) + 1
-        val secondDie = rand.nextInt(6) + 1
+        val app = application as DiceRollerApplication
+        val (firstDie, secondDie) = app.provideDice()
+
         first_number.text = firstDie.toString()
         second_number.text = secondDie.toString()
         first_dice.setImageResource(getDrawableForTheDie(firstDie))
@@ -81,21 +80,6 @@ class MainActivity : AppCompatActivity() {
         sum = firstDie + secondDie
         result_tv.text = null
         result_icon.setImageResource(0)
-
-        /*A local function to make three rolls with time gaps, to create a rolling feeling
-        suspend fun animateDice() {
-            for (i in 0..2) {
-                rollDice(i)
-                delay(DELAY_TIME)
-            }
-        }
-
-        GlobalScope.launch {
-            animateDice()
-            //In the end, show a blinking animation to signify that rolling ended
-            val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blinking_anim)
-            first_dice.startAnimation(animation)
-        }*/
     }
 
     companion object {
