@@ -3,10 +3,10 @@ package com.canli.oya.diceroller
 import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
 import android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
