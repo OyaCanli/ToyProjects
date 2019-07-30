@@ -4,4 +4,5 @@
     <string name="wrong_answer">Essaye encore!</string>
     <string name="roll">Zar At</string>
     <string name="ok">OK</string>
+    <string name="no_input_warning">Bir sayi girmediniz</string>
 </resources>
