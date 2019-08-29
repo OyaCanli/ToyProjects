@@ -3,10 +3,11 @@ package io.neverstoplearning.advancedandroid.home;
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
 import io.neverstoplearning.advancedandroid.di.ActivityScope;
+import io.neverstoplearning.advancedandroid.ui.NavigationModule;
 
 @ActivityScope
 @Subcomponent(modules = {
-        MainScreenBindingModule.class,
+        MainScreenBindingModule.class, NavigationModule.class
 })
 public interface MainActivityComponent extends AndroidInjector<MainActivity> {
 

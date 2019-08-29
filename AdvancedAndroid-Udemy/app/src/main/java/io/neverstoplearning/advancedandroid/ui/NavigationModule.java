@@ -1,0 +1,11 @@
+package io.neverstoplearning.advancedandroid.ui;
+
+import dagger.Binds;
+import dagger.Module;
+
+@Module
+public abstract class NavigationModule {
+
+    @Binds
+    abstract IScreenNavigator provideScreenNavigator(ScreenNavigator screenNavigator);
+}
