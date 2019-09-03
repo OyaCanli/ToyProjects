@@ -36,6 +36,9 @@ ext {
     rxAndroidVersion = '2.0.1'
     rxRelayVersion = '2.0.0'
     conductorVersion = '2.1.4'
+    threeTenAbpVersion = '1.0.5'
+    timberVersion = '4.7.1'
+    butterknifeVersion = '8.8.1'
 }
 
 task clean(type: Delete) {
