@@ -7,13 +7,43 @@
     tools:context=".MainActivity">
 
     <com.canlioya.customviewexercise.MyCustomView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/myCustomView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_margin="16dp"
-        app:square_color="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:square_color="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/increasePadding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="PADDING +"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/swapColor"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/swapColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="SWAP COLOR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/decreasePadding"
+        app:layout_constraintStart_toEndOf="@id/increasePadding" />
+
+    <Button
+        android:id="@+id/decreasePadding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="PADDING -"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/swapColor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
