@@ -9,9 +9,11 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
 
     private var faceColor = DEFAULT_FACE_COLOR
     private var eyesColor = DEFAULT_EYES_COLOR
+    private var pupilColor = DEFAULT_PUPIL_COLOR
     private var mouthColor = DEFAULT_MOUTH_COLOR
     private var borderColor = DEFAULT_BORDER_COLOR
     private var borderWidth = DEFAULT_BORDER_WIDTH
+
 
     private val paint = Paint()
     private val mouthPath = Path()
@@ -39,6 +41,7 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
         happinessState = typedArray.getInt(R.styleable.EmotionalFaceView_state, HAPPY.toInt()).toLong()
         faceColor = typedArray.getColor(R.styleable.EmotionalFaceView_faceColor, DEFAULT_FACE_COLOR)
         eyesColor = typedArray.getColor(R.styleable.EmotionalFaceView_eyesColor, DEFAULT_EYES_COLOR)
+        pupilColor = typedArray.getColor(R.styleable.EmotionalFaceView_pupilColor, DEFAULT_PUPIL_COLOR)
         mouthColor = typedArray.getColor(R.styleable.EmotionalFaceView_mouthColor, DEFAULT_MOUTH_COLOR)
         borderColor = typedArray.getColor(R.styleable.EmotionalFaceView_borderColor,
             DEFAULT_BORDER_COLOR)
@@ -56,6 +59,7 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
 
         drawFaceBackground(canvas)
         drawEyes(canvas)
+        drawPupils(canvas)
         drawMouth(canvas)
     }
 
@@ -75,7 +79,7 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
     }
 
     private fun drawEyes(canvas: Canvas) {
-        // 1
+
         paint.color = eyesColor
         paint.style = Paint.Style.FILL
 
@@ -84,6 +88,17 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
 
         val rightEyeRect = RectF(size * 0.57f, size * 0.23f, size * 0.68f, size * 0.50f)
         canvas.drawOval(rightEyeRect, paint)
+    }
+
+    private fun drawPupils(canvas: Canvas) {
+        paint.color = pupilColor
+        paint.style = Paint.Style.FILL
+
+        val leftEyePupil = RectF(size * 0.37f, size * 0.30f, size * 0.42f, size * 0.48f)
+        canvas.drawOval(leftEyePupil, paint)
+
+        val rightEyePupil = RectF(size * 0.62f, size * 0.30f, size * 0.67f, size * 0.48f)
+        canvas.drawOval(rightEyePupil, paint)
     }
 
     private fun drawMouth(canvas: Canvas) {
@@ -118,7 +133,8 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
 
     companion object {
         private const val DEFAULT_FACE_COLOR = Color.YELLOW
-        private const val DEFAULT_EYES_COLOR = Color.BLACK
+        private const val DEFAULT_EYES_COLOR = Color.WHITE
+        private const val DEFAULT_PUPIL_COLOR = Color.BLACK
         private const val DEFAULT_MOUTH_COLOR = Color.BLACK
         private const val DEFAULT_BORDER_COLOR = Color.BLACK
         private const val DEFAULT_BORDER_WIDTH = 4.0f

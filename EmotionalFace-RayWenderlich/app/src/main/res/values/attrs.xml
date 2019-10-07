@@ -4,6 +4,7 @@
         <!--2-->
         <attr name="faceColor" format="color" />
         <attr name="eyesColor" format="color" />
+        <attr name="pupilColor" format="color" />
         <attr name="mouthColor" format="color" />
         <attr name="borderColor" format="color" />
         <attr name="borderWidth" format="dimension" />

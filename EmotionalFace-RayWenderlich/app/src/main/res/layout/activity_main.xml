@@ -34,6 +34,7 @@
         android:layout_height="@dimen/face_button_dimen"
         app:borderColor="@color/black"
         app:eyesColor="@color/black"
+        app:pupilColor="@color/white"
         app:faceColor="@color/light_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
