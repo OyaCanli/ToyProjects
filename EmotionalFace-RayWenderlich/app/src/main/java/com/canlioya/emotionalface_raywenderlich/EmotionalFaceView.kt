@@ -89,15 +89,14 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
     private fun drawMouth(canvas: Canvas) {
         mouthPath.reset()
 
-        // Move to starting point
-        mouthPath.moveTo(size * 0.22f, size * 0.7f)
-
         if (happinessState == HAPPY) {
             //Draw a smiling mouth
-            mouthPath.quadTo(size * 0.5f, size * 0.80f, size * 0.78f, size * 0.7f)
-            mouthPath.quadTo(size * 0.5f, size * 0.90f, size * 0.22f, size * 0.7f)
+            mouthPath.moveTo(size * 0.22f, size * 0.6f)
+            mouthPath.quadTo(size * 0.5f, size * 0.70f, size * 0.78f, size * 0.6f)
+            mouthPath.quadTo(size * 0.5f, size * 0.95f, size * 0.22f, size * 0.6f)
         } else {
             // Draw a sad mouth
+            mouthPath.moveTo(size * 0.22f, size * 0.7f)
             mouthPath.quadTo(size * 0.5f, size * 0.50f, size * 0.78f, size * 0.7f)
             mouthPath.quadTo(size * 0.5f, size * 0.60f, size * 0.22f, size * 0.7f)
         }
