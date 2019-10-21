@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transitionManager xmlns:android="http://schemas.android.com/apk/res/android">
-    <transition android:toScene="@layout/layout_second" android:transition="@transition/to_second_layout"/>
-    <transition android:toScene="@layout/activity_main" android:transition="@transition/to_second_layout"/>
+    <transition android:toScene="@layout/transition_second" android:transition="@transition/to_second_layout"/>
+    <transition android:toScene="@layout/activity_transition" android:transition="@transition/to_second_layout"/>
 </transitionManager>

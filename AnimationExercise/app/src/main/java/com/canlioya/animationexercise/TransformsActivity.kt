@@ -2,18 +2,15 @@ package com.canlioya.animationexercise
 
 import android.graphics.Rect
 import android.os.Bundle
-import android.transition.ChangeClipBounds
-import android.transition.ChangeImageTransform
-import android.transition.ChangeTransform
-import android.transition.TransitionManager
+import android.transition.*
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_tranforms.*
 
-class TranformsActivity : AppCompatActivity() {
+class TransformsActivity : AppCompatActivity() {
 
-    lateinit var root : ViewGroup
+    lateinit var root: ViewGroup
     var magnified = false
     var scaleTypeChanged = false
 
@@ -27,11 +24,11 @@ class TranformsActivity : AppCompatActivity() {
 
         scale_type_transform.setOnClickListener { changeScaleType() }
 
-        clip_bounds_btn.setOnClickListener { clipBounds() }
+        clip_bounds_btn.setOnClickListener { clipBoundsAndScaleUp() }
     }
 
     private fun changeScale() {
-        if(!magnified) {
+        if (!magnified) {
             TransitionManager.beginDelayedTransition(root, ChangeTransform())
             tour_image.scaleX = 1.5f
             tour_image.scaleY = 1.5f
@@ -45,7 +42,7 @@ class TranformsActivity : AppCompatActivity() {
     }
 
     private fun changeScaleType() {
-        if(!scaleTypeChanged){
+        if (!scaleTypeChanged) {
             TransitionManager.beginDelayedTransition(root, ChangeImageTransform())
             tour_image.scaleType = ImageView.ScaleType.CENTER_INSIDE
             scaleTypeChanged = true
@@ -56,8 +53,15 @@ class TranformsActivity : AppCompatActivity() {
         }
     }
 
-    private fun clipBounds() {
-        TransitionManager.beginDelayedTransition(root, ChangeClipBounds())
-        tour_image.clipBounds = Rect(300,200,800,800)
+    private fun clipBoundsAndScaleUp() {
+        val set = TransitionSet()
+        set.addTransition(ChangeClipBounds())
+            .addTransition(ChangeTransform())
+        with(tour_image){
+            clipBounds = Rect(300, 200, 800, 800)
+            scaleX = 1.5f
+            scaleY = 1.5f
+        }
+        TransitionManager.beginDelayedTransition(root, set)
     }
 }

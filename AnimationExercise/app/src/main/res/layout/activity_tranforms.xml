@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TranformsActivity">
+    tools:context=".TransformsActivity">
 
     <ImageView
         android:id="@+id/tour_image"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
-
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/maiden_tower" />
+        app:srcCompat="@drawable/maiden_tower"
+        android:transitionName="imageTransformPage"/>
 
     <Button
         android:id="@+id/scale_transform_btn"
