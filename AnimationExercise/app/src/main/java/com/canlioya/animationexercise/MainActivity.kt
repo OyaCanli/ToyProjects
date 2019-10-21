@@ -4,12 +4,27 @@ import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.os.Bundle
-import android.transition.*
+import android.transition.Scene
+import android.transition.TransitionInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    var secondLayoutActive = false
+
+    private val transitionManager by lazy {
+        TransitionInflater.from(this@MainActivity).inflateTransitionManager(R.transition.transition_manager, root_main)
+    }
+
+    private val scene1 by lazy {
+        Scene.getSceneForLayout(root_main, R.layout.activity_main, this@MainActivity)
+    }
+
+    private val scene2 by lazy {
+        Scene.getSceneForLayout(root_main, R.layout.layout_second, this@MainActivity)
+    }
 
     private val animatorSet : AnimatorSet by lazy {
         AnimatorInflater.loadAnimator(this@MainActivity, R.animator.rotate) as AnimatorSet}
@@ -30,34 +45,23 @@ class MainActivity : AppCompatActivity() {
             override fun onAnimationCancel(p0: Animator?) {}
 
             override fun onAnimationEnd(p0: Animator?) {
-                transitionToSecondLayout()
+                transitionManager.transitionTo(scene2)
+                secondLayoutActive = true
             }
         })
 
         button.setOnClickListener {
             animatorSet.start()
         }
-
     }
 
-    private fun transitionToSecondLayout() {
-        val fade : Transition = Fade()
-        val changeBounds : Transition = ChangeBounds()
-        val transitionSet = TransitionSet()
-        transitionSet.addTransition(fade)
-            .addTransition(changeBounds)
-            .setDuration(2000)
-            .addListener(object: Transition.TransitionListener{
-                override fun onTransitionEnd(p0: Transition?) {
-                    Toast.makeText(this@MainActivity, "Transition ended", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onTransitionResume(p0: Transition?) {}
-                override fun onTransitionPause(p0: Transition?) {}
-                override fun onTransitionCancel(p0: Transition?) {}
-                override fun onTransitionStart(p0: Transition?) {}
-            })
-        val scene2 = Scene.getSceneForLayout(root_main, R.layout.layout_second, this)
-        TransitionManager.go(scene2, transitionSet)
+    override fun onBackPressed() {
+        if(secondLayoutActive) {
+            transitionManager.transitionTo(scene1)
+            secondLayoutActive = false
+        } else {
+            super.onBackPressed()
+        }
     }
+
 }
