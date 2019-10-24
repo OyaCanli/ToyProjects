@@ -23,5 +23,10 @@ class MainActivity : AppCompatActivity() {
             val options : ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity, ball_image, "transitionsPage")
             startActivity(intent, options.toBundle())
         }
+
+        go_to_avds.setOnClickListener{
+            val intent = Intent(this@MainActivity, AVDActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
