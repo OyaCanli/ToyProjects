@@ -24,10 +24,15 @@
             app:duration="3000">
         <OnClick
                 app:targetId="@id/moon"
-                app:clickAction="toggle"
-        />
+                app:clickAction="toggle" />
 
-        <!-- TODO: Add KeyFrameSet and KeyPosition -->
+        <KeyFrameSet>
+            <KeyPosition
+                app:framePosition="50"
+                app:motionTarget="@id/moon"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.5"/>
+        </KeyFrameSet>
     </Transition>
 
     <!-- Constraints to apply at the start of the animation -->
@@ -37,8 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-        />
+                app:layout_constraintBottom_toBottomOf="parent" />
+
         <Constraint
                 android:id="@id/credits"
                 android:layout_width="wrap_content"
@@ -47,8 +52,7 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/moon"
-                app:layout_constraintTop_toTopOf="@id/moon"
-        />
+                app:layout_constraintTop_toTopOf="@id/moon" />
     </ConstraintSet>
 
     <!-- Constraints to apply at the end of the animation -->
