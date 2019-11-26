@@ -33,7 +33,7 @@ class TaskDetailViewModel(private val tasksRepository : ITasksRepository) : View
     private val _taskId = MutableLiveData<String>()
 
     private val _task = _taskId.switchMap { taskId ->
-        tasksRepository.observeTask(taskId).map { computeResult(it) }
+        tasksRepository.observeTask(taskId).map { computeResult(it)  }
     }
     val task: LiveData<Task?> = _task
 
@@ -87,7 +87,7 @@ class TaskDetailViewModel(private val tasksRepository : ITasksRepository) : View
         _taskId.value = taskId
     }
 
-    private fun computeResult(taskResult: Result<Task>): Task? {
+    private fun computeResult(taskResult: Result<Task?>): Task? {
         return if (taskResult is Success) {
             taskResult.data
         } else {

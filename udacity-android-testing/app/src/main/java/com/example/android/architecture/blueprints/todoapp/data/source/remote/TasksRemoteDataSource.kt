@@ -53,7 +53,7 @@ object TasksRemoteDataSource : TasksDataSource {
         return observableTasks
     }
 
-    override fun observeTask(taskId: String): LiveData<Result<Task>> {
+    override fun observeTask(taskId: String): LiveData<Result<Task?>> {
         return observableTasks.map { tasks ->
             when (tasks) {
                 is Result.Loading -> Result.Loading

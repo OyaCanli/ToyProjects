@@ -12,7 +12,7 @@ interface ITasksRepository {
     fun observeTasks(): LiveData<Result<List<Task>>>
 
     suspend fun refreshTask(taskId: String)
-    fun observeTask(taskId: String): LiveData<Result<Task>>
+    fun observeTask(taskId: String): LiveData<Result<Task?>>
     /**
      * Relies on [getTasks] to fetch data and picks the task with the same ID.
      */
