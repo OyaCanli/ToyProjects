@@ -29,7 +29,7 @@ class FakeDataSource(val tasks : MutableList<Task>? = mutableListOf()) : TasksDa
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun observeTask(taskId: String): LiveData<Result<Task>> {
+    override fun observeTask(taskId: String): LiveData<Result<Task?>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
