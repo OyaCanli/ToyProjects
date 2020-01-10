@@ -28,5 +28,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, AVDActivity::class.java)
             startActivity(intent)
         }
+
+        go_to_physic_anims.setOnClickListener{
+            val intent = Intent(this@MainActivity, PhysicsAnimsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
