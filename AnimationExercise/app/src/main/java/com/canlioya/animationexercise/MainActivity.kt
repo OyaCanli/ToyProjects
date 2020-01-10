@@ -33,5 +33,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, PhysicsAnimsActivity::class.java)
             startActivity(intent)
         }
+
+        go_to_lottie_anims.setOnClickListener{
+            val intent = Intent(this@MainActivity, LottieAnimsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

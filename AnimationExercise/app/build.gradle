@@ -35,4 +35,6 @@ dependencies {
 
     def dynamicanimation_version = "1.0.0"
     implementation "androidx.dynamicanimation:dynamicanimation:$dynamicanimation_version"
+
+    implementation "com.airbnb.android:lottie:3.3.1"
 }
