@@ -28,16 +28,20 @@ class AVDActivity : AppCompatActivity() {
             plusToCrossAvd.registerAnimationCallback(AnimOverCallback())
             plusToCrossAvd.start()
         }
+
+        val loadingAvd = loading_image.drawable as AnimatedVectorDrawable
+        loading_btn.setOnClickListener{
+            loadingAvd.start()
+        }
     }
 
     fun changeImageDrawable() {
-        if (!inCrossShape) {
-            inCrossShape = true
-            plus_image.setImageResource(R.drawable.cross_to_plus_avd)
-        } else {
-            inCrossShape = false
-            plus_image.setImageResource(R.drawable.plus_to_cross_avd)
-        }
+        val imageResource = if (!inCrossShape) R.drawable.cross_to_plus_avd
+                            else R.drawable.plus_to_cross_avd
+
+        plus_image.setImageResource(imageResource)
+
+        inCrossShape = !inCrossShape
     }
 
     inner class AnimOverCallback : Animatable2.AnimationCallback() {
