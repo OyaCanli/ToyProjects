@@ -1,9 +1,13 @@
 package com.example.android.architecture.blueprints.todoapp.tasks
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.android.architecture.blueprints.todoapp.Event
+import com.example.android.architecture.blueprints.todoapp.MainCoroutineRule
+import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.data.Task
 import com.example.android.architecture.blueprints.todoapp.data.source.FakeTestRepository
 import com.example.android.architecture.blueprints.todoapp.getOrAwaitValue
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.hamcrest.CoreMatchers.*
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -20,6 +24,10 @@ class TasksViewModelTest {
     private lateinit var tasksViewModel: TasksViewModel
 
     private lateinit var tasksRepository: FakeTestRepository
+
+    @ExperimentalCoroutinesApi
+    @get:Rule
+    var mainCoroutineRule = MainCoroutineRule()
 
     @Before
     fun setupViewModel() {
@@ -53,6 +61,20 @@ class TasksViewModelTest {
         // Then the "Add task" action is visible
         val value = tasksViewModel.tasksAddViewVisible.getOrAwaitValue()
         assertThat(value, `is`(true))
+
+    }
+
+    @Test
+    fun completeTast_dataAndSnackBarUpdated() {
+        val task = Task("Title", "Description")
+        tasksRepository.addTasks(task)
+
+        tasksViewModel.completeTask(task, true)
+
+        assertThat(tasksRepository.tasksServiceData[task.id]?.isCompleted, `is`(true))
+
+        val snackText : Event<Int> = tasksViewModel.snackbarText.getOrAwaitValue()
+        assertThat(snackText.getContentIfNotHandled(), `is`(R.string.task_marked_complete))
 
     }
 }
