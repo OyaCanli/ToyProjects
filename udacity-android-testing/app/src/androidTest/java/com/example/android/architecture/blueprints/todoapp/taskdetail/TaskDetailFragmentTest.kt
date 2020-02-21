@@ -54,7 +54,7 @@ class TaskDetailFragmentTest {
     }
 
     @Test
-    fun completedTaskDetails_DisplayedInUi() = runBlockingTest{
+    fun completedTaskDetails_DisplayedInUi() = runBlockingTest {
         // GIVEN - Add completed task to the DB
         val completedTask = Task("Completed Task", "AndroidX Rocks", true)
         repository.saveTask(completedTask)
