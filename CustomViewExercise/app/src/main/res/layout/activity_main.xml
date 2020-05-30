@@ -34,14 +34,12 @@
             android:background="@color/colorPrimary"
             android:text="first item" />
 
-        <TextView
+        <com.canlioya.customviewexercise.PizzaView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
             android:layout_margin="8dp"
             android:padding="8dp"
-            android:gravity="center"
-            android:text="second item" />
+            android:gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
