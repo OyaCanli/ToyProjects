@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DynamicPropertyChangeActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Dynamic property changing exercise:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.canlioya.customviewexercise.MyCustomView
+        android:id="@+id/myCustomView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:square_color="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/increasePadding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="PADDING +"
+        app:layout_constraintTop_toBottomOf="@id/myCustomView"
+        app:layout_constraintEnd_toStartOf="@+id/swapColor"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/swapColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="SWAP COLOR"
+        app:layout_constraintTop_toBottomOf="@id/myCustomView"
+        app:layout_constraintEnd_toStartOf="@id/decreasePadding"
+        app:layout_constraintStart_toEndOf="@id/increasePadding" />
+
+    <Button
+        android:id="@+id/decreasePadding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="PADDING -"
+        app:layout_constraintTop_toBottomOf="@id/myCustomView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/swapColor" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

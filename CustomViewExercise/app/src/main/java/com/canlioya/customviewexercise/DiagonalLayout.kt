@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.core.view.children
 
-class MyCustomViewGroup @JvmOverloads constructor(
+class DiagonalLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
 

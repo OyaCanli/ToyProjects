@@ -6,112 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/diagonal_layout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CustomViewGroup:"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="32dp"
+        android:text="DiagonalLayout with Pizza views"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.canlioya.customviewexercise.MyCustomViewGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView">
-
-        <com.canlioya.customviewexercise.PizzaView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="8dp"
-            android:padding="8dp"
-            android:gravity="center"
-            app:num_pieces="8"
-            app:pizza_color="@color/colorPrimaryDark"/>
-
-        <com.canlioya.customviewexercise.PizzaView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp"
-            app:stroke_width="10dp"
-            android:gravity="center" />
-
-        <com.canlioya.customviewexercise.PizzaView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="8dp"
-            android:padding="8dp"
-            android:gravity="center"
-            app:num_pieces="4"
-            app:pizza_color="@android:color/holo_blue_bright"/>
-
-        <com.canlioya.customviewexercise.PizzaView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp"
-            app:num_pieces="4"
-            app:pizza_color="@android:color/holo_orange_dark"
-            app:stroke_width="8dp"
-            android:gravity="center" />
-
-    </com.canlioya.customviewexercise.MyCustomViewGroup>
-
-
-    <com.canlioya.customviewexercise.MyCustomView
-        android:id="@+id/myCustomView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@id/swapColor"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:square_color="@color/colorAccent" />
-
     <Button
-        android:id="@+id/increasePadding"
+        android:id="@+id/dynamic_property_change_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="PADDING +"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/swapColor"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/swapColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="SWAP COLOR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/decreasePadding"
-        app:layout_constraintStart_toEndOf="@id/increasePadding" />
-
-    <Button
-        android:id="@+id/decreasePadding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="PADDING -"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="dynamic property change exercise"
+        android:layout_margin="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/swapColor" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/diagonal_layout_btn" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/slide_layout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dynamic property changing exercise:"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/myCustomView"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="SlideLayoutButton"
+        android:layout_margin="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dynamic_property_change_btn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
