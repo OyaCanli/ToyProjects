@@ -1,6 +1,7 @@
 package com.canlioya.customviewexercise
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -12,13 +13,25 @@ class PizzaView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    val defaultStrokeWidth = 6f
-    val numberOfPieces = 6
+    var pizzaStrokeWidth = 6f
+    var numberOfPieces = 6
+    var pizzaColor = Color.MAGENTA
 
-    val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        style = Paint.Style.STROKE
-        strokeWidth = defaultStrokeWidth
-        color = Color.GREEN
+    val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    init {
+        attrs?.let{
+            val array : TypedArray = context.obtainStyledAttributes(it, R.styleable.PizzaView)
+            pizzaStrokeWidth = array.getDimensionPixelSize(R.styleable.PizzaView_stroke_width, 6).toFloat()
+            pizzaColor = array.getColor(R.styleable.PizzaView_pizza_color, pizzaColor)
+            numberOfPieces = array.getInt(R.styleable.PizzaView_num_pieces, 6)
+            array.recycle()
+        }
+            paint.apply {
+                style = Paint.Style.STROKE
+                strokeWidth = pizzaStrokeWidth
+                color = pizzaColor
+            }
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -26,7 +39,7 @@ class PizzaView @JvmOverloads constructor(
         val height = height - paddingTop - paddingBottom
         val centerX = (width / 2 + paddingStart).toFloat()
         val centerY = (height / 2 + paddingEnd).toFloat()
-        val radius = (width.coerceAtMost(height) - defaultStrokeWidth) / 2
+        val radius = (width.coerceAtMost(height) - pizzaStrokeWidth).toFloat() / 2
         canvas?.drawCircle(centerX, centerY, radius, paint)
         drawPizzaCuts(canvas, centerX, centerY, radius)
     }

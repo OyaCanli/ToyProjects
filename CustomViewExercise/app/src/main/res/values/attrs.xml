@@ -4,4 +4,10 @@
         <attr name="square_color" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="PizzaView">
+        <attr name="num_pieces" format="integer" />
+        <attr name="stroke_width" format="dimension" />
+        <attr name="pizza_color" format="color" />
+    </declare-styleable>
+
 </resources>
