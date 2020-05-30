@@ -27,10 +27,10 @@
         app:layout_constraintTop_toBottomOf="@+id/diagonal_layout_btn" />
 
     <Button
-        android:id="@+id/slide_layout_btn"
+        android:id="@+id/bookshelf_layout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SlideLayoutButton"
+        android:text="Bookshelf Layout"
         android:layout_margin="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

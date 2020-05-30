@@ -15,6 +15,12 @@ class MainActivity : AppCompatActivity() {
 
         diagonal_layout_btn.setOnClickListener { launchDiagonalLayoutActivity() }
         dynamic_property_change_btn.setOnClickListener { launchDynamicPropertyChangeExercise() }
+        bookshelf_layout_btn.setOnClickListener { launchBookshelfLayoutActivity() }
+    }
+
+    private fun launchBookshelfLayoutActivity() {
+        val intent = Intent(this, BookShelfActivity::class.java)
+        startActivity(intent)
     }
 
     private fun launchDynamicPropertyChangeExercise() {
