@@ -36,5 +36,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dynamic_property_change_btn" />
 
+    <Button
+        android:id="@+id/lined_notepad_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="Lined NotePad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookshelf_layout_btn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

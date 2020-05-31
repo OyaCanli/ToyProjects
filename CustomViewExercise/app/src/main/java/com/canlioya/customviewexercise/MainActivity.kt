@@ -16,6 +16,12 @@ class MainActivity : AppCompatActivity() {
         diagonal_layout_btn.setOnClickListener { launchDiagonalLayoutActivity() }
         dynamic_property_change_btn.setOnClickListener { launchDynamicPropertyChangeExercise() }
         bookshelf_layout_btn.setOnClickListener { launchBookshelfLayoutActivity() }
+        lined_notepad_btn.setOnClickListener { launchLinedNotePadActivity() }
+    }
+
+    private fun launchLinedNotePadActivity() {
+        val intent = Intent(this, NotePadActivity::class.java)
+        startActivity(intent)
     }
 
     private fun launchBookshelfLayoutActivity() {
