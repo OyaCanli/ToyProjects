@@ -6,6 +6,7 @@
     tools:context=".NotePadActivity">
 
     <com.canlioya.customviewexercise.LinedEditText
+        android:id="@+id/linedEditText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp"

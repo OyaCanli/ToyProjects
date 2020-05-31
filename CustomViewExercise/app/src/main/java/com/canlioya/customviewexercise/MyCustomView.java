@@ -69,15 +69,18 @@ public class MyCustomView extends View {
     public void swapColor(){
         mPaint.setColor(mPaint.getColor() == mSquareColor ? Color.RED : mSquareColor);
         postInvalidate();
+        requestLayout();
     }
 
     public void customPaddingUp(int padding){
         mPadding += padding;
         postInvalidate();
+        requestLayout();
     }
 
     public void customPaddingDown(int padding){
         mPadding -= padding;
         postInvalidate();
+        requestLayout();
     }
 }

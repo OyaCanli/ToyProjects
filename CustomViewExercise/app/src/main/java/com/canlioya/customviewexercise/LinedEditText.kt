@@ -43,6 +43,5 @@ class LinedEditText @JvmOverloads constructor(
 
         // Finishes up by calling the parent method
         super.onDraw(canvas)
-
     }
 }
