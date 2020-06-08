@@ -57,7 +57,6 @@ public class MyCustomView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
         mRect.left = mPadding;
         mRect.right = getWidth()- mPadding;
         mRect.top = mPadding;
