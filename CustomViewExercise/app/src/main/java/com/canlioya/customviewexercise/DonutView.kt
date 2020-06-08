@@ -1,10 +1,7 @@
 package com.canlioya.customviewexercise
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Path
-import android.graphics.Region
+import android.graphics.*
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
@@ -17,11 +14,21 @@ class DonutView @JvmOverloads constructor(
     private var squareSize = 200
     private var centerY = 100f
     private var centerX = 100f
-    private var basePaint : Paint = Paint().apply {
+
+    private val basePaint : Paint = Paint().apply {
         style = Paint.Style.FILL
         color = 0xFFc6853b.toInt()
     }
     private var holePath = Path()
+
+    private val icingEffect = ComposePathEffect(CornerPathEffect(20f),
+        DiscretePathEffect(40f, 20f))
+
+    private val icingPaint = Paint().apply {
+        style = Paint.Style.FILL
+        color = 0xff48281B.toInt()
+        pathEffect = icingEffect
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val widthAfterMargin = (measuredWidth - paddingStart - paddingEnd)
@@ -50,6 +57,8 @@ class DonutView @JvmOverloads constructor(
             canvas?.clipPath(holePath, Region.Op.DIFFERENCE)
         }
         canvas?.drawCircle(centerX, centerY, width/2f, basePaint)
+        canvas?.drawCircle(centerX, centerY, width / 2.15f, icingPaint)
+
         canvas?.restore()
     }
 }
