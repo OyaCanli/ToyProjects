@@ -1,6 +1,7 @@
 package com.canlioya.customviewexercise
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.graphics.*
 import android.os.Build
 import android.util.AttributeSet
@@ -44,9 +45,22 @@ class DonutView @JvmOverloads constructor(
 
     private val sprinklePaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    private val sprinkleCount: Int = 50
+    private var sprinkleCount: Int = 50
+
+    private var sprinkleWidth = 14f
+    private var sprinkleHeight = 42f
 
     private val sprinklePadding = 20f
+
+    init {
+        attrs?.let{
+            val array : TypedArray = context.obtainStyledAttributes(it, R.styleable.DonutView)
+            sprinkleCount = array.getInt(R.styleable.DonutView_num_sprinkles, 50)
+            sprinkleHeight = array.getDimensionPixelSize(R.styleable.DonutView_sprinkle_height, 42).toFloat()
+            sprinkleWidth = sprinkleHeight / 3
+            array.recycle()
+        }
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val widthAfterMargin = (measuredWidth - paddingStart - paddingEnd)
@@ -91,9 +105,9 @@ class DonutView @JvmOverloads constructor(
 
             sprinklePaint.color = it.color
             if (Build.VERSION.SDK_INT >= 21){
-                canvas?.drawRoundRect(centerX - 7f, centerY - 22f, centerX + 7f, centerY + 22f, 10f, 10f, sprinklePaint)
+                canvas?.drawRoundRect(centerX - (sprinkleWidth / 2), centerY - (sprinkleHeight / 2), centerX + (sprinkleWidth / 2), centerY + (sprinkleHeight / 2), 10f, 10f, sprinklePaint)
             } else {
-                canvas?.drawRect(centerX - 7f, centerY - 22f, centerX + 7f, centerY + 22f, sprinklePaint)
+                canvas?.drawRect(centerX - (sprinkleWidth / 2), centerY - (sprinkleHeight / 2), centerX + (sprinkleWidth / 2), centerY + (sprinkleHeight / 2), sprinklePaint)
             }
 
             canvas?.restore()
@@ -108,8 +122,6 @@ class DonutView @JvmOverloads constructor(
 
         val outerRadius = size / 2f
         val innerRadius = size / 6f
-
-
 
         for (i in 0 until sprinkleCount) {
             list.add(

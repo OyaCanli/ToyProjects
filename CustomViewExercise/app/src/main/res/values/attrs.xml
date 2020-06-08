@@ -10,4 +10,9 @@
         <attr name="pizza_color" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="DonutView">
+        <attr name="num_sprinkles" format="integer" />
+        <attr name="sprinkle_height" format="dimension" />
+    </declare-styleable>
+
 </resources>
