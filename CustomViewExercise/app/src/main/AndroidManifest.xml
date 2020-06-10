@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DonutActivity"></activity>
+        <activity android:name=".CustomLayoutManagerActivity"/>
+        <activity android:name=".DonutActivity" />
         <activity android:name=".NotePadActivity" />
         <activity android:name=".BookShelfActivity" />
         <activity android:name=".DynamicPropertyChangeActivity" />

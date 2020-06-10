@@ -17,7 +17,13 @@ class MainActivity : AppCompatActivity() {
         dynamic_property_change_btn.setOnClickListener { launchDynamicPropertyChangeExercise() }
         bookshelf_layout_btn.setOnClickListener { launchBookshelfLayoutActivity() }
         lined_notepad_btn.setOnClickListener { launchLinedNotePadActivity() }
-        donut_btn.setOnClickListener { launchDonutView()}
+        donut_btn.setOnClickListener { launchDonutView() }
+        carousel_layout_manager.setOnClickListener { launchCustomLayoutManagerActivity()}
+    }
+
+    private fun launchCustomLayoutManagerActivity() {
+        val intent = Intent(this, CustomLayoutManagerActivity::class.java)
+        startActivity(intent)
     }
 
     private fun launchDonutView() {
