@@ -3,6 +3,12 @@ package com.canlioya.customviewexercise
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.canlioya.customviewexercise.bookshelflayout.BookShelfActivity
+import com.canlioya.customviewexercise.carousellayoutmanager.CustomLayoutManagerActivity
+import com.canlioya.customviewexercise.diagonallayout.DiagonalLayoutActivity
+import com.canlioya.customviewexercise.donut.FancyViewsActivity
+import com.canlioya.customviewexercise.dynamicpropertychange.DynamicPropertyChangeActivity
+import com.canlioya.customviewexercise.linededittext.NotePadActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -27,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun launchDonutView() {
-        val intent = Intent(this, DonutActivity::class.java)
+        val intent = Intent(this, FancyViewsActivity::class.java)
         startActivity(intent)
     }
 

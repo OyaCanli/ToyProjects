@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".BookShelfActivity">
+    tools:context=".bookshelflayout.BookShelfActivity">
 
-    <com.canlioya.customviewexercise.BookShelfLayout
+    <com.canlioya.customviewexercise.bookshelflayout.BookShelfLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,5 +47,5 @@
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
-    </com.canlioya.customviewexercise.BookShelfLayout>
+    </com.canlioya.customviewexercise.bookshelflayout.BookShelfLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,8 @@
-package com.canlioya.customviewexercise
+package com.canlioya.customviewexercise.diagonallayout
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.canlioya.customviewexercise.R
 
 class DiagonalLayoutActivity : AppCompatActivity() {
 

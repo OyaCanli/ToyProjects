@@ -1,4 +1,4 @@
-package com.canlioya.customviewexercise
+package com.canlioya.customviewexercise.donut
 
 import android.content.Context
 import android.content.res.TypedArray
@@ -7,6 +7,7 @@ import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
+import com.canlioya.customviewexercise.R
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -54,7 +55,9 @@ class DonutView @JvmOverloads constructor(
 
     init {
         attrs?.let{
-            val array : TypedArray = context.obtainStyledAttributes(it, R.styleable.DonutView)
+            val array : TypedArray = context.obtainStyledAttributes(it,
+                R.styleable.DonutView
+            )
             sprinkleCount = array.getInt(R.styleable.DonutView_num_sprinkles, 50)
             sprinkleHeight = array.getDimensionPixelSize(R.styleable.DonutView_sprinkle_height, 42).toFloat()
             sprinkleWidth = sprinkleHeight / 3

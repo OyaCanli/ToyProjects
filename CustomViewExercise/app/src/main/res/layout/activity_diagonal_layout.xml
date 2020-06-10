@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.canlioya.customviewexercise.DiagonalLayout
+    <com.canlioya.customviewexercise.diagonallayout.DiagonalLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".DiagonalLayoutActivity">
+        tools:context=".diagonallayout.DiagonalLayoutActivity">
 
-        <com.canlioya.customviewexercise.PizzaView
+        <com.canlioya.customviewexercise.donut.PizzaView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="8dp"
@@ -23,7 +23,7 @@
             app:num_pieces="8"
             app:pizza_color="@color/colorPrimaryDark" />
 
-        <com.canlioya.customviewexercise.PizzaView
+        <com.canlioya.customviewexercise.donut.PizzaView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -31,7 +31,7 @@
             android:padding="8dp"
             app:stroke_width="10dp" />
 
-        <com.canlioya.customviewexercise.PizzaView
+        <com.canlioya.customviewexercise.donut.PizzaView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="8dp"
@@ -40,7 +40,7 @@
             app:num_pieces="4"
             app:pizza_color="@android:color/holo_blue_bright" />
 
-        <com.canlioya.customviewexercise.PizzaView
+        <com.canlioya.customviewexercise.donut.PizzaView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -50,6 +50,6 @@
             app:pizza_color="@android:color/holo_orange_dark"
             app:stroke_width="8dp" />
 
-    </com.canlioya.customviewexercise.DiagonalLayout>
+    </com.canlioya.customviewexercise.diagonallayout.DiagonalLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

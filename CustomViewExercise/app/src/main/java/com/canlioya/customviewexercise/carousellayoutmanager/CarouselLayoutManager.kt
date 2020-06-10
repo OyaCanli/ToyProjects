@@ -1,10 +1,11 @@
-package com.canlioya.customviewexercise
+package com.canlioya.customviewexercise.carousellayoutmanager
 
 import android.content.res.Resources
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.core.math.MathUtils
 import androidx.recyclerview.widget.RecyclerView
+import com.canlioya.customviewexercise.R
 import kotlin.math.acos
 import kotlin.math.floor
 import kotlin.math.sin

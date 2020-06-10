@@ -1,4 +1,4 @@
-package com.canlioya.customviewexercise
+package com.canlioya.customviewexercise.diagonallayout
 
 import android.content.Context
 import android.util.AttributeSet

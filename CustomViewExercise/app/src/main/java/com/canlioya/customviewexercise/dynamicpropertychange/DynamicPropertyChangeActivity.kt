@@ -1,8 +1,9 @@
-package com.canlioya.customviewexercise
+package com.canlioya.customviewexercise.dynamicpropertychange
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.canlioya.customviewexercise.R
 import kotlinx.android.synthetic.main.activity_dynamic_property_change.*
 
 class DynamicPropertyChangeActivity : AppCompatActivity(), View.OnClickListener {

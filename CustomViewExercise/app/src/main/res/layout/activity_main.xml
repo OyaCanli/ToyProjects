@@ -50,7 +50,7 @@
         android:id="@+id/donut_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Donut View"
+        android:text="Fancy Views"
         android:layout_margin="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,4 +1,4 @@
-package com.canlioya.customviewexercise;
+package com.canlioya.customviewexercise.dynamicpropertychange;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,6 +12,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
+import com.canlioya.customviewexercise.R;
 
 public class MyCustomView extends View {
 

@@ -1,4 +1,4 @@
-package com.canlioya.customviewexercise
+package com.canlioya.customviewexercise.linededittext
 
 import android.content.Context
 import android.graphics.Canvas

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DynamicPropertyChangeActivity">
+    tools:context=".dynamicpropertychange.DynamicPropertyChangeActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.canlioya.customviewexercise.MyCustomView
+    <com.canlioya.customviewexercise.dynamicpropertychange.MyCustomView
         android:id="@+id/myCustomView"
         android:layout_width="80dp"
         android:layout_height="80dp"

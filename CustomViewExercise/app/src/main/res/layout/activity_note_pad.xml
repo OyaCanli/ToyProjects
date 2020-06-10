@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotePadActivity">
+    tools:context=".linededittext.NotePadActivity">
 
-    <com.canlioya.customviewexercise.LinedEditText
+    <com.canlioya.customviewexercise.linededittext.LinedEditText
         android:id="@+id/linedEditText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

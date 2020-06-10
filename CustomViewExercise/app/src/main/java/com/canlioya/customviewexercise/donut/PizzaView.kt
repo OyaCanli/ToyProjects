@@ -1,4 +1,4 @@
-package com.canlioya.customviewexercise
+package com.canlioya.customviewexercise.donut
 
 import android.content.Context
 import android.content.res.TypedArray
@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import com.canlioya.customviewexercise.R
 
 
 class PizzaView @JvmOverloads constructor(
@@ -21,7 +22,9 @@ class PizzaView @JvmOverloads constructor(
 
     init {
         attrs?.let{
-            val array : TypedArray = context.obtainStyledAttributes(it, R.styleable.PizzaView)
+            val array : TypedArray = context.obtainStyledAttributes(it,
+                R.styleable.PizzaView
+            )
             pizzaStrokeWidth = array.getDimensionPixelSize(R.styleable.PizzaView_stroke_width, 6).toFloat()
             pizzaColor = array.getColor(R.styleable.PizzaView_pizza_color, pizzaColor)
             numberOfPieces = array.getInt(R.styleable.PizzaView_num_pieces, 6)

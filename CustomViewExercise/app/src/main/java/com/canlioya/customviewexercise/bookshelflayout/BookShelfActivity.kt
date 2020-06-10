@@ -1,7 +1,8 @@
-package com.canlioya.customviewexercise
+package com.canlioya.customviewexercise.bookshelflayout
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.canlioya.customviewexercise.R
 
 class BookShelfActivity : AppCompatActivity() {
 

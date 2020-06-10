@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomLayoutManagerActivity"/>
-        <activity android:name=".DonutActivity" />
-        <activity android:name=".NotePadActivity" />
-        <activity android:name=".BookShelfActivity" />
-        <activity android:name=".DynamicPropertyChangeActivity" />
-        <activity android:name=".DiagonalLayoutActivity" />
+        <activity android:name=".carousellayoutmanager.CustomLayoutManagerActivity"/>
+        <activity android:name=".donut.FancyViewsActivity" />
+        <activity android:name=".linededittext.NotePadActivity" />
+        <activity android:name=".bookshelflayout.BookShelfActivity" />
+        <activity android:name=".dynamicpropertychange.DynamicPropertyChangeActivity" />
+        <activity android:name=".diagonallayout.DiagonalLayoutActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
