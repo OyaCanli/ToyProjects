@@ -13,14 +13,12 @@ class DialView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private val SELECTION_COUNT = 4 // Total number of selections.
-
     private var mWidth = 0f// Custom view width.
 
     private var mHeight = 0f// Custom view height.
 
-    var fanOnColor = Color.CYAN;
-    var fanOffColor = Color.GRAY;
+    var fanOnColor = Color.CYAN
+    var fanOffColor = Color.GRAY
 
     // For text in the view.
     private var mTextPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -42,6 +40,12 @@ class DialView @JvmOverloads constructor(
     // String buffer for dial labels and float for ComputeXY result.
     private val mTempLabel = StringBuffer(8)
 
+    var selectionCount = 4
+        set(value) {
+            field = value
+            invalidate()
+        }
+
     init {
         attrs?.let {
             val typedArray = getContext().obtainStyledAttributes(
@@ -58,7 +62,7 @@ class DialView @JvmOverloads constructor(
         dialPaint.color = fanOffColor
 
         setOnClickListener { // Rotate selection to the next valid choice.
-            activeSelection = (activeSelection + 1) % SELECTION_COUNT
+            activeSelection = (activeSelection + 1) % selectionCount
             // Set dial background color to green if selection is >= 1.
             if (activeSelection >= 1) {
                 dialPaint.color = fanOnColor
@@ -85,16 +89,34 @@ class DialView @JvmOverloads constructor(
         val boxSize = availableWidth.coerceAtMost(availableHeight)
 
         val finalWidth = MeasureSpec.makeMeasureSpec(boxSize + paddingStart + paddingEnd, widthMode)
-        val finalHeight = MeasureSpec.makeMeasureSpec(boxSize + paddingTop + paddingBottom, heightMode)
+        val finalHeight = MeasureSpec.makeMeasureSpec(
+            boxSize + paddingTop + paddingBottom,
+            heightMode
+        )
         setMeasuredDimension(finalWidth, finalHeight)
     }
 
-    private fun computeXYForPosition(pos: Int, radius: Float): Pair<Float, Float> {
-        val startAngle = Math.PI * (9 / 8.0) // Angles are in radians.
-        val angle = startAngle + pos * (Math.PI / 4)
-        val x = (radius * cos(angle)).toFloat() + mWidth / 2
-        val y = (radius * sin(angle)).toFloat() + mHeight / 2
-        return x to y
+    private fun computeXYForPosition(pos: Int, radius: Float, isLabel : Boolean): Pair<Float, Float> {
+        val startAngle : Double
+        val angle: Double
+        if (selectionCount > 4) {
+            startAngle = Math.PI * (3 / 2.0)
+            angle = startAngle + pos * (Math.PI / selectionCount)
+            val x = ((radius * cos(angle * 2)).toFloat() + mWidth / 2)
+            var y= ((radius * sin(angle * 2)).toFloat() + mHeight / 2)
+            if (angle > Math.toRadians(360.0) && isLabel) {
+                y += 20
+            }
+            return x to y
+        } else {
+            startAngle = Math.PI * (9 / 8.0)
+            angle = startAngle + pos * (Math.PI / selectionCount)
+            val x = ((radius * cos(angle)).toFloat()
+                    + mWidth / 2)
+            val y = ((radius * sin(angle)).toFloat()
+                    + mHeight / 2)
+            return x to y
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -104,8 +126,8 @@ class DialView @JvmOverloads constructor(
         // Draw the text labels.
         val labelRadius = radius + 20
         val label = mTempLabel
-        for (i in 0 until SELECTION_COUNT) {
-            val xyData = computeXYForPosition(i, labelRadius)
+        for (i in 0 until selectionCount) {
+            val xyData = computeXYForPosition(i, labelRadius, true)
             val (x, y) = xyData
             label.setLength(0)
             label.append(i)
@@ -115,7 +137,8 @@ class DialView @JvmOverloads constructor(
         val markerRadius = radius - 35
         val xyData = computeXYForPosition(
             activeSelection,
-            markerRadius
+            markerRadius,
+            false
         )
         val (x, y) = xyData
         canvas.drawCircle(x, y, 20f, mTextPaint)
