@@ -11,7 +11,7 @@
         android:id="@+id/openFanController"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="See Fan Controller"
+        android:text="@string/see_fan_controller"
         app:layout_constraintBottom_toTopOf="@+id/openCanvasEx"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -22,10 +22,20 @@
         android:id="@+id/openCanvasEx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="See Canvas example"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/see_canvas_example"
+        app:layout_constraintBottom_toTopOf="@id/openFreeWriting"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/openFanController" />
+
+    <Button
+        android:id="@+id/openFreeWriting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/see_free_writing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/openCanvasEx" />
 </androidx.constraintlayout.widget.ConstraintLayout>

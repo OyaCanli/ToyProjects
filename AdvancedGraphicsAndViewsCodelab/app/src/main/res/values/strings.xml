@@ -4,4 +4,7 @@
     <string name="fan_control">Fan Control</string>
     <string name="keep_tapping">Keep tapping.</string>
     <string name="done">Done!</string>
+    <string name="see_fan_controller">See Fan Controller</string>
+    <string name="see_canvas_example">See Canvas example</string>
+    <string name="see_free_writing">See Free Writing</string>
 </resources>

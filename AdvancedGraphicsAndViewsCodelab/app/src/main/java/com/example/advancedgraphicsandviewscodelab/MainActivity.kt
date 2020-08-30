@@ -12,6 +12,12 @@ class MainActivity : AppCompatActivity() {
 
         openFanController.setOnClickListener { launchFanControllerActivity() }
         openCanvasEx.setOnClickListener { launchCanvasExample() }
+        openFreeWriting.setOnClickListener { launchFreeWritingActivity() }
+    }
+
+    private fun launchFreeWritingActivity() {
+        val intent = Intent(this, FreeWritingActivity::class.java)
+        startActivity(intent)
     }
 
     private fun launchCanvasExample() {
