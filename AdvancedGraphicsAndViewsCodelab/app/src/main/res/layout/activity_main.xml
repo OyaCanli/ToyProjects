@@ -34,8 +34,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/see_free_writing"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/openClipPath"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/openCanvasEx" />
+
+    <Button
+        android:id="@+id/openClipPath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/see_clip_path"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/openFreeWriting" />
 </androidx.constraintlayout.widget.ConstraintLayout>

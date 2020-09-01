@@ -13,6 +13,12 @@ class MainActivity : AppCompatActivity() {
         openFanController.setOnClickListener { launchFanControllerActivity() }
         openCanvasEx.setOnClickListener { launchCanvasExample() }
         openFreeWriting.setOnClickListener { launchFreeWritingActivity() }
+        openClipPath.setOnClickListener { launchClipPathActivity() }
+    }
+
+    private fun launchClipPathActivity() {
+        val intent = Intent(this, ClipPathActivity::class.java)
+        startActivity(intent)
     }
 
     private fun launchFreeWritingActivity() {

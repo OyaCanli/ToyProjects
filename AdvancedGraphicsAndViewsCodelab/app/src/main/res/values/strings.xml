@@ -7,4 +7,8 @@
     <string name="see_fan_controller">See Fan Controller</string>
     <string name="see_canvas_example">See Canvas example</string>
     <string name="see_free_writing">See Free Writing</string>
+    <string name="see_clip_path">See Clip Path</string>
+    <string name="clipping">Clipping</string>
+    <string name="translated">Translated Text</string>
+    <string name="skewed">Skewed and </string>
 </resources>
