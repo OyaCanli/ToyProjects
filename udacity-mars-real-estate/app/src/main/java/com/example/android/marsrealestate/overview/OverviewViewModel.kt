@@ -33,12 +33,17 @@ import retrofit2.Response
  */
 class OverviewViewModel : ViewModel() {
 
-    // The internal MutableLiveData String that stores the status of the most recent request
-    private val _response = MutableLiveData<String>()
+    // The internal MutableLiveData String that stores the most recent response status
+    private val _status = MutableLiveData<String>()
 
-    // The external immutable LiveData for the request status String
-    val response: LiveData<String>
-        get() = _response
+    // The external immutable LiveData for the status String
+    val status: LiveData<String>
+        get() = _status
+
+    private val _properties = MutableLiveData<List<MarsProperty>>()
+
+    val properties: LiveData<List<MarsProperty>>
+        get() = _properties
 
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
@@ -54,10 +59,13 @@ class OverviewViewModel : ViewModel() {
     private fun getMarsRealEstateProperties() {
         viewModelScope.launch {
             try {
-                val getProperties = MarsApi.retrofitService.getProperties()
-                _response.value = "Success: ${getProperties.size} Mars properties retrieved"
+                val listResult = MarsApi.retrofitService.getProperties()
+                _status.value = "Success: ${listResult.size}"
+                if (listResult.isNotEmpty()) {
+                    _properties.value = listResult
+                }
             } catch (e: Exception) {
-                _response.value = "Failure: ${e.message}"
+                _status.value = "Failure: ${e.message}"
             }
         }
     }
