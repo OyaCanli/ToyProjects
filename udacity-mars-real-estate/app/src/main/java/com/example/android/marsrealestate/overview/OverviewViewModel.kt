@@ -28,9 +28,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-/**
- * The [ViewModel] that is attached to the [OverviewFragment].
- */
+
 class OverviewViewModel : ViewModel() {
 
     // The internal MutableLiveData String that stores the most recent response status
@@ -45,17 +43,24 @@ class OverviewViewModel : ViewModel() {
     val properties: LiveData<List<MarsProperty>>
         get() = _properties
 
-    /**
-     * Call getMarsRealEstateProperties() on init so we can display status immediately.
-     */
+    private val _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
+
+    val navigateToSelectedProperty: LiveData<MarsProperty>
+        get() = _navigateToSelectedProperty
+
     init {
         getMarsRealEstateProperties()
     }
 
-    /**
-     * Sets the value of the response LiveData to the Mars API status or the successful number of
-     * Mars properties retrieved.
-     */
+    fun displayPropertyDetails(marsProperty: MarsProperty) {
+        _navigateToSelectedProperty.value = marsProperty
+    }
+
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
+    }
+
+
     private fun getMarsRealEstateProperties() {
         viewModelScope.launch {
             try {
