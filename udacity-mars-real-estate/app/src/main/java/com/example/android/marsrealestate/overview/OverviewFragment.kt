@@ -20,18 +20,19 @@ package com.example.android.marsrealestate.overview
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.android.marsrealestate.MainViewModel
 import com.example.android.marsrealestate.R
 import com.example.android.marsrealestate.databinding.FragmentOverviewBinding
 import com.example.android.marsrealestate.network.MarsApiFilter
+import com.example.android.marsrealestate.network.MarsProperty
 
 
 class OverviewFragment : Fragment() {
 
-    private val viewModel: OverviewViewModel by lazy {
-        ViewModelProvider(this).get(OverviewViewModel::class.java)
-    }
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -45,14 +46,7 @@ class OverviewFragment : Fragment() {
 
         // Sets the adapter of the photosGrid RecyclerView
         binding.photosGrid.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener {
-            viewModel.displayPropertyDetails(it)
-        })
-
-        viewModel.navigateToSelectedProperty.observe(this, {
-            if ( null != it ) {
-                this.findNavController().navigate(OverviewFragmentDirections.actionShowDetail(it))
-                viewModel.displayPropertyDetailsComplete()
-            }
+            this.findNavController().navigate(OverviewFragmentDirections.actionShowDetail(it))
         })
 
         setHasOptionsMenu(true)
