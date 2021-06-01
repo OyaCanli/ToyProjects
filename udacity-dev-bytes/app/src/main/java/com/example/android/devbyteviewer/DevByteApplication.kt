@@ -62,6 +62,11 @@ class DevByteApplication : Application() {
 
         val repeatingRequest = PeriodicWorkRequestBuilder<RefreshDataWorker>(1, TimeUnit.DAYS)
             .setConstraints(constraints)
+            .setBackoffCriteria(
+                BackoffPolicy.LINEAR,
+                1,
+                TimeUnit.HOURS
+            )
             .build()
 
         WorkManager.getInstance().enqueueUniquePeriodicWork(
