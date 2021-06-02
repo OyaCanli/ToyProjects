@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/gadgetListFragment"
-        android:name="com.example.bondgadgets.ui.GadgetListFragment"
+        android:name="com.example.bondgadgets.ui.gadgetlist.GadgetListFragment"
         android:label="Bond's Gadgets"
-        tools:layout="@layout/fragment_gadget_list" />
+        tools:layout="@layout/fragment_gadget_list" >
+        <action
+            android:id="@+id/action_gadgetListFragment_to_QRCodeScanFragment"
+            app:destination="@id/QRCodeScanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/QRCodeScanFragment"
+        android:name="com.example.bondgadgets.ui.qrcode.QRCodeScanFragment"
+        android:label="QRCode Scan"
+        tools:layout="@layout/fragment_qrcode_scan" />
 </navigation>

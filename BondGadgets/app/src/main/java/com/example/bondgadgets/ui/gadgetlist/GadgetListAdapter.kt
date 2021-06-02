@@ -1,4 +1,4 @@
-package com.example.bondgadgets.ui
+package com.example.bondgadgets.ui.gadgetlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,9 +12,12 @@ import com.example.bondgadgets.R
 import com.example.bondgadgets.common.toFormattedString
 import com.example.bondgadgets.databinding.ItemGadgetBinding
 
-class GadgetListAdapter(val clickListener: GadgetClickListener) : ListAdapter<Gadget, GadgetListAdapter.ViewHolder>(GadgetDiffCallback()){
+class GadgetListAdapter(val clickListener: GadgetClickListener) : ListAdapter<Gadget, GadgetListAdapter.ViewHolder>(
+    GadgetDiffCallback()
+){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentGadget = getItem(position)

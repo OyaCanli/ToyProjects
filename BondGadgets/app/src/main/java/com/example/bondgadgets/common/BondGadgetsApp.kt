@@ -1,4 +1,4 @@
-package com.example.bondgadgets
+package com.example.bondgadgets.common
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

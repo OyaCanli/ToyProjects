@@ -1,7 +1,9 @@
-package com.example.bondgadgets
+package com.example.bondgadgets.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.bondgadgets.Gadget
+import com.example.bondgadgets.GadgetQRCode
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton

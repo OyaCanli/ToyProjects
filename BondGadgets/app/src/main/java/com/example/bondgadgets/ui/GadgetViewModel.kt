@@ -5,10 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bondgadgets.Gadget
-import com.example.bondgadgets.Repository
+import com.example.bondgadgets.data.Repository
 
 class GadgetListViewModel @ViewModelInject constructor(
-    private val repository : Repository) : ViewModel() {
+    private val repository : Repository
+) : ViewModel() {
 
     private val viewState = MediatorLiveData<GadgetListState>()
     fun getViewState() : LiveData<GadgetListState> = viewState
@@ -28,7 +29,6 @@ class GadgetListViewModel @ViewModelInject constructor(
     fun addGadget(gadget : Gadget){
         repository.addGadget(gadget)
     }
-
 
 }
 
