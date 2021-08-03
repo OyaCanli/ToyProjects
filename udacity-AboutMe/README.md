@@ -1,3 +1,0 @@
-Started this project in parallel with the toy app of Udacity Developing Android Apps With Kotlin course, lesson 2. Though, I made it differently. The overall aim is to practice Kotlin.
-Toy app contains an activity with two fragments: in the first fragment, we collect the information about the user. In the second fragment we show it to the user in a profile page. Info is kept in the shared viewmodel 
-(not persisted). I added a step indicator and view transitions.
