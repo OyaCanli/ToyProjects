@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BLEGattExercise</string>
+    <string name="permission_location_rationale">\"Bluetooth scans can possibly reveal your location. That\'s why we have to ask for this permission, although we won\'t get your location\"</string>
+</resources>
