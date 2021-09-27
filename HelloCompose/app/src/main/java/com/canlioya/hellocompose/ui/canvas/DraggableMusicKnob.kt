@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -38,7 +37,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.canlioya.hellocompose.R
-import com.canlioya.hellocompose.ui.theme.Cream
 import kotlin.math.PI
 import kotlin.math.atan2
 import kotlin.math.roundToInt
@@ -99,9 +97,9 @@ fun VolumeBar(
             constraints.maxWidth / (2f * barCount)
         }
         Canvas(modifier = modifier) {
-            for(i in 0 until barCount) {
+            for (i in 0 until barCount) {
                 drawRoundRect(
-                    color = if(i in 0..activeBars) Color.Green else Color.DarkGray,
+                    color = if (i in 0..activeBars) Color.Green else Color.DarkGray,
                     topLeft = Offset(i * barWidth * 2f + barWidth / 2f, 0f),
                     size = Size(barWidth, constraints.maxHeight.toFloat()),
                     cornerRadius = CornerRadius(0f)

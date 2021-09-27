@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.canlioya.hellocompose.ui.AnimateColorAndSize
 import com.canlioya.hellocompose.ui.FavoriteActionButton
-import com.canlioya.hellocompose.ui.canvas.MusicBox
+import com.canlioya.hellocompose.ui.canvas.EmotionalFace
 import com.canlioya.hellocompose.ui.theme.HelloComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MyApp {
-                MusicBox()
+                EmotionalFace()
             }
         }
     }
@@ -47,17 +47,13 @@ fun MyApp(content: @Composable () -> Unit) {
             topBar = {
                 TopAppBar(
                     title = {
-                        Text(text = "Hello Compose")
-                    },
-                    actions = {
-                        FavoriteActionButton()
+                        Text(text = "Hello Compose Canvas")
                     }
                 )
             }
         ) { // A surface container using the 'background' color from the theme
             Surface(
-                color = MaterialTheme.colors.background,
-                modifier = Modifier.padding(16.dp)
+                color = MaterialTheme.colors.background
             ) {
                 content()
             }
