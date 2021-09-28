@@ -18,6 +18,7 @@
 
 buildscript {
     ext.kotlin_version = '1.5.20'
+    ext.lifecycleVersion = '2.4.0-alpha03'
     repositories {
         google()
         jcenter()

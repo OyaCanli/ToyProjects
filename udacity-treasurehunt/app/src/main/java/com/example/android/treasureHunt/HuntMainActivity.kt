@@ -16,15 +16,24 @@
 
 package com.example.android.treasureHunt
 
+import android.Manifest
 import android.annotation.TargetApi
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.treasureHunt.databinding.ActivityHuntMainBinding
 import com.google.android.gms.location.GeofencingClient
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
  * The Treasure Hunt app is a single-player game based on geofences.
@@ -44,7 +53,20 @@ class HuntMainActivity : AppCompatActivity() {
     private lateinit var geofencingClient: GeofencingClient
     private lateinit var viewModel: GeofenceViewModel
 
-    // TODO: Step 2 add in variable to check if device is running Q or later
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions())
+    { permissions ->
+        // Handle Permission granted/rejected
+        permissions.entries.forEach {
+            val permissionName = it.key
+            val isGranted = it.value
+            if (isGranted) {
+                // Permission is granted
+            } else {
+                Toast.makeText(this, "This app cannot work without location permission", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
     // A PendingIntent for the Broadcast Receiver that handles geofence transitions.
     // TODO: Step 8 add in a pending intent
@@ -65,6 +87,19 @@ class HuntMainActivity : AppCompatActivity() {
 
         // Create channel for notifications
         createChannel(this)
+    }
+
+    private fun showLocationPermissionRationale() {
+        MaterialAlertDialogBuilder(this)
+            .setMessage("Device location is necessary for the core functionality of this app")
+            .setPositiveButton("OK, ask for permission again") { dialog, which ->
+                // Respond to positive button press
+                requestPermissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))
+            }
+            .setNegativeButton("No permission for you") { dialog, which ->
+                // Respond to positive button press
+            }
+            .show()
     }
 
     override fun onStart() {
@@ -99,17 +134,6 @@ class HuntMainActivity : AppCompatActivity() {
         }
     }
 
-    /*
-     * In all cases, we need to have the location permission.  On Android 10+ (Q) we need to have
-     * the background permission as well.
-     */
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        // TODO: Step 5 add code to handle the result of the user's permission
-    }
 
     /**
      * This will also destroy any saved state in the associated ViewModel, so we remove the
@@ -147,9 +171,20 @@ class HuntMainActivity : AppCompatActivity() {
      */
     @TargetApi(29)
     private fun foregroundAndBackgroundLocationPermissionApproved(): Boolean {
-        // TODO: Step 3 replace this with code to check that the foreground and background
-        //  permissions were approved
-        return false
+        val foregroundLocationApproved = (
+                PackageManager.PERMISSION_GRANTED ==
+                        ActivityCompat.checkSelfPermission(this,
+                            Manifest.permission.ACCESS_FINE_LOCATION))
+        val backgroundPermissionApproved =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                PackageManager.PERMISSION_GRANTED ==
+                        ActivityCompat.checkSelfPermission(
+                            this, Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                        )
+            } else {
+                true
+            }
+        return foregroundLocationApproved && backgroundPermissionApproved
     }
 
     /*
@@ -157,7 +192,7 @@ class HuntMainActivity : AppCompatActivity() {
      */
     @TargetApi(29)
     private fun requestForegroundAndBackgroundLocationPermissions() {
-        // TODO: Step 4 add code to request foreground and background permissions
+        requestPermissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION))
     }
 
     /*
