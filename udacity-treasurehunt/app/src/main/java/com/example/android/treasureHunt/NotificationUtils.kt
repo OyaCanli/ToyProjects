@@ -78,8 +78,12 @@ fun NotificationManager.sendGeofenceEnteredNotification(context: Context, foundI
     // a custom message when a Geofence triggers.
     val builder = NotificationCompat.Builder(context, CHANNEL_ID)
         .setContentTitle(context.getString(R.string.app_name))
-        .setContentText(context.getString(R.string.content_text,
-            context.getString(GeofencingConstants.LANDMARK_DATA[foundIndex].name)))
+        .setContentText(
+            context.getString(
+                R.string.content_text,
+                context.getString(GeofencingConstants.LANDMARK_DATA[foundIndex].name)
+            )
+        )
         .setPriority(NotificationCompat.PRIORITY_HIGH)
         .setContentIntent(contentPendingIntent)
         .setSmallIcon(R.drawable.map_small)
@@ -91,5 +95,3 @@ fun NotificationManager.sendGeofenceEnteredNotification(context: Context, foundI
 
 private const val NOTIFICATION_ID = 33
 private const val CHANNEL_ID = "GeofenceChannel"
-
-
