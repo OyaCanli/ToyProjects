@@ -3,20 +3,20 @@ package com.canlioya.hellocompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.canlioya.hellocompose.ui.AnimateColorAndSize
-import com.canlioya.hellocompose.ui.FavoriteActionButton
-import com.canlioya.hellocompose.ui.canvas.EmotionalFace
+import com.canlioya.hellocompose.ui.canvas.SnowMan
 import com.canlioya.hellocompose.ui.theme.HelloComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MyApp {
-                EmotionalFace()
+                SnowMan()
             }
         }
     }
@@ -47,7 +47,12 @@ fun MyApp(content: @Composable () -> Unit) {
             topBar = {
                 TopAppBar(
                     title = {
-                        Text(text = "Hello Compose Canvas")
+                        Text(text = "Hello Compose")
+                    },
+                    actions = {
+                        IconButton(onClick = { /* doSomething() */ }) {
+                            Icon(Icons.Filled.Favorite, contentDescription = null)
+                        }
                     }
                 )
             }

@@ -58,7 +58,6 @@ fun SpreadHorizontally(modifier: Modifier = Modifier) {
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun BoxWithRoundedBackground(modifier: Modifier = Modifier) {
@@ -66,8 +65,7 @@ fun BoxWithRoundedBackground(modifier: Modifier = Modifier) {
         modifier = modifier
             .padding(8.dp)
             .background(color = Cream, shape = RoundedCornerShape(10.dp))
-    )
-    {
+    ) {
         SampleItemLayout()
     }
 }
@@ -76,9 +74,10 @@ fun BoxWithRoundedBackground(modifier: Modifier = Modifier) {
 @Composable
 fun WeightedLayout(modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Box(modifier = modifier.weight(1f)
-            .fillMaxWidth()
-            .background(color = Color.Red)
+        Box(
+            modifier = modifier.weight(1f)
+                .fillMaxWidth()
+                .background(color = Color.Red)
         ) {
             Text(
                 text = "First row",
@@ -86,17 +85,25 @@ fun WeightedLayout(modifier: Modifier = Modifier) {
             )
         }
         Row(modifier = Modifier.weight(2f)) {
-            Box(modifier = modifier.weight(1f)
-                .fillMaxHeight()
-                .background(color = Color.Yellow)) {
-                Text(text = "First column of second row",
-                    modifier = modifier.align(Alignment.Center).padding(8.dp))
+            Box(
+                modifier = modifier.weight(1f)
+                    .fillMaxHeight()
+                    .background(color = Color.Yellow)
+            ) {
+                Text(
+                    text = "First column of second row",
+                    modifier = modifier.align(Alignment.Center).padding(8.dp)
+                )
             }
-            Box(modifier = modifier.weight(4f)
-                .fillMaxHeight()
-                .background(color = Color.Green)) {
-                Text(text = "Second column of second row",
-                    modifier = modifier.align(Alignment.Center).padding(8.dp))
+            Box(
+                modifier = modifier.weight(4f)
+                    .fillMaxHeight()
+                    .background(color = Color.Green)
+            ) {
+                Text(
+                    text = "Second column of second row",
+                    modifier = modifier.align(Alignment.Center).padding(8.dp)
+                )
             }
         }
     }
@@ -115,4 +122,3 @@ fun ScrollableColumn() {
         }
     }
 }
-

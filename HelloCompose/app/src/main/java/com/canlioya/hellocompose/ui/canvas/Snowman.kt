@@ -25,7 +25,7 @@ import com.canlioya.hellocompose.ui.theme.DarkBrown
 import com.canlioya.hellocompose.ui.theme.LightBrown
 
 @Composable
-fun EmotionalFace() {
+fun SnowMan() {
 
     val mouthPath by remember {
         mutableStateOf(Path())

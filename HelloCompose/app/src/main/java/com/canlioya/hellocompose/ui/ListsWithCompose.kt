@@ -1,6 +1,5 @@
 package com.canlioya.hellocompose.ui
 
-import android.widget.SimpleExpandableListAdapter
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
@@ -30,7 +29,7 @@ fun ListWithPositions() {
     val scrollState = rememberLazyListState()
 
     LazyColumn(state = scrollState) {
-        itemsIndexed(listOf("This", "is", "jetpack","compose", "try", "it", "today")) { index , text ->
+        itemsIndexed(listOf("This", "is", "jetpack", "compose", "try", "it", "today")) { index, text ->
             Row {
                 Text("$index.")
                 Spacer(modifier = Modifier.width(10.dp))

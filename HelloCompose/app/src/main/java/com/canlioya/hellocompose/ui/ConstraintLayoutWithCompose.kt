@@ -20,7 +20,6 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 
-
 @Composable
 fun ImageCardWithConstraintLayout(
     painter: Painter,
@@ -61,9 +60,11 @@ fun ImageCardWithConstraintLayout(
     }
 
     ConstraintLayout(constraints, modifier = modifier.fillMaxSize()) {
-        Box(modifier = modifier
-            .fillMaxSize()
-            .layoutId("image")) {
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .layoutId("image")
+        ) {
             Image(
                 painter = painter,
                 contentDescription = contentDescription,
@@ -83,12 +84,17 @@ fun ImageCardWithConstraintLayout(
                     )
                 )
         )
-        Box(modifier = Modifier
-            .layoutId("title").padding(8.dp)
+        Box(
+            modifier = Modifier
+                .layoutId("title").padding(8.dp)
         ) {
-            Text(text = titleText,
-                style = TextStyle(color = Color.White,
-                    fontSize = 16.sp))
+            Text(
+                text = titleText,
+                style = TextStyle(
+                    color = Color.White,
+                    fontSize = 16.sp
+                )
+            )
         }
     }
 }
