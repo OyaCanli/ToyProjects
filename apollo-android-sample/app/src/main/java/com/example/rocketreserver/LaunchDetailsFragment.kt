@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.apollographql.apollo.coroutines.await
 import com.apollographql.apollo.exception.ApolloException
 import com.example.rocketreserver.databinding.LaunchDetailsFragmentBinding
+import com.example.rocketserver.BookTripMutation
+import com.example.rocketserver.CancelTripMutation
 import com.example.rocketserver.LaunchDetailsQuery
 
 class LaunchDetailsFragment : Fragment() {
@@ -34,7 +37,7 @@ class LaunchDetailsFragment : Fragment() {
             binding.error.visibility = View.GONE
 
             val response = try {
-                apolloClient.query(LaunchDetailsQuery(id = args.launchId)).await()
+                apolloClient(requireContext()).query(LaunchDetailsQuery(id = args.launchId)).await()
             } catch (e: ApolloException) {
                 binding.progressBar.visibility = View.GONE
                 binding.error.text = "Oh no... A protocol error happened"
@@ -59,6 +62,54 @@ class LaunchDetailsFragment : Fragment() {
             binding.missionName.text = launch.mission?.name
             val rocket = launch.rocket
             binding.rocketName.text = "🚀 ${rocket?.name} ${rocket?.type}"
+
+            configureButton(launch.isBooked)
+        }
+    }
+
+    private fun configureButton(isBooked: Boolean) {
+        binding.bookButton.visibility = View.VISIBLE
+        binding.bookProgressBar.visibility = View.GONE
+
+        binding.bookButton.text = if (isBooked) {
+            getString(R.string.cancel)
+        } else {
+            getString(R.string.book_now)
+        }
+
+        binding.bookButton.setOnClickListener {
+            val context = context
+            if (context != null && User.getToken(context) == null) {
+                findNavController().navigate(
+                    R.id.open_login
+                )
+                return@setOnClickListener
+            }
+
+            binding.bookButton.visibility = View.INVISIBLE
+            binding.bookProgressBar.visibility = View.VISIBLE
+
+            lifecycleScope.launchWhenResumed {
+                val mutation = if (isBooked) {
+                    CancelTripMutation(id = args.launchId)
+                } else {
+                    BookTripMutation(id = args.launchId)
+                }
+
+                val response = try {
+                    apolloClient(requireContext()).mutate(mutation).await()
+                } catch (e: ApolloException) {
+                    configureButton(isBooked)
+                    return@launchWhenResumed
+                }
+
+                if (response.hasErrors()) {
+                    configureButton(isBooked)
+                    return@launchWhenResumed
+                }
+
+                configureButton(!isBooked)
+            }
         }
     }
 }
