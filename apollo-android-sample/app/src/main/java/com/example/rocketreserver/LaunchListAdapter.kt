@@ -7,19 +7,15 @@ import coil.load
 import com.example.rocketreserver.databinding.LaunchItemBinding
 import com.example.rocketserver.LaunchListQuery
 
-class LaunchListAdapter() :
+class LaunchListAdapter(private val launches: List<LaunchListQuery.Launch>) :
     RecyclerView.Adapter<LaunchListAdapter.ViewHolder>() {
 
-    var launches: List<LaunchListQuery.Launch>? = null
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    var onEndOfListReached: (() -> Unit)? = null
 
     class ViewHolder(val binding: LaunchItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun getItemCount(): Int {
-        return launches?.size ?: 0
+        return launches.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,11 +24,15 @@ class LaunchListAdapter() :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val launch = launches?.get(position)
-        holder.binding.site.text = launch?.site ?: ""
-        holder.binding.missionName.text = launch?.mission?.name
-        holder.binding.missionPatch.load(launch?.mission?.missionPatch) {
+        val launch = launches[position]
+        holder.binding.site.text = launch.site ?: ""
+        holder.binding.missionName.text = launch.mission?.name
+        holder.binding.missionPatch.load(launch.mission?.missionPatch) {
             placeholder(R.drawable.ic_placeholder)
+        }
+
+        if (position == launches?.size?.minus(1)) {
+            onEndOfListReached?.invoke()
         }
     }
 }
