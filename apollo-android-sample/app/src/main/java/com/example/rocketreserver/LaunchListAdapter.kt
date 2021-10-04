@@ -11,6 +11,7 @@ class LaunchListAdapter(private val launches: List<LaunchListQuery.Launch>) :
     RecyclerView.Adapter<LaunchListAdapter.ViewHolder>() {
 
     var onEndOfListReached: (() -> Unit)? = null
+    var onItemClicked: ((LaunchListQuery.Launch) -> Unit)? = null
 
     class ViewHolder(val binding: LaunchItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -31,8 +32,12 @@ class LaunchListAdapter(private val launches: List<LaunchListQuery.Launch>) :
             placeholder(R.drawable.ic_placeholder)
         }
 
-        if (position == launches?.size?.minus(1)) {
+        if (position == launches.size.minus(1)) {
             onEndOfListReached?.invoke()
+        }
+
+        holder.binding.root.setOnClickListener {
+            onItemClicked?.invoke(launch)
         }
     }
 }
